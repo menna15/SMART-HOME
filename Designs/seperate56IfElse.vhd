@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 -- Design 2 idea : is to keep the output if heater or cooler = 1 untill the tempreture change to the normal range --
-entity combined56_ifelse is  
+entity seperate56_ifelse is  
     port (
     Clk : in std_logic; 
     Rst : in std_logic; -- reset input
@@ -20,9 +20,9 @@ entity combined56_ifelse is
     cooler    : out std_logic;
     display   : out std_logic_vector (2 Downto 0) -- 
 );
-end combined56_ifelse;
+end seperate56_ifelse;
 
-architecture Design_Architecture of combined56_ifelse is
+architecture Design_Architecture of seperate56_ifelse is
 type state_type is (s0, s1, s2, s3, s4, s5, s6); 
 signal state, next_state: state_type;
 
@@ -41,7 +41,7 @@ begin
     process(state,SFD,SRD,SFA,SW,ST)
     begin
         
-        if (state = s0 or state = s5 or state = s6) then
+        if (state = s0 or state = s6) then
             if(SFD='1') then
             next_state <= s1;
             elsif(SRD='1') then
@@ -109,7 +109,7 @@ begin
             next_state <= s0;
             end if;
                
-        else -- if (state = s4) then
+        elsif (state = s4) then
             if(ST<"0110010") then
             next_state <= s5;
             elsif(ST>"1000110") then
@@ -125,8 +125,24 @@ begin
             else
             next_state <= s0;
             end if;
-            
 
+        else -- state 5
+            if(ST>"1000110") then
+            next_state <= s6;
+            elsif(SFD='1') then
+            next_state <= s1;
+            elsif(SRD='1') then
+            next_state <= s2;
+            elsif(SFA='1') then
+            next_state <= s3;
+            elsif(SW='1') then
+            next_state <= s4;
+            elsif(ST<"0110010") then
+            next_state <= s5;
+            else
+            next_state <= s0;
+            end if;
+            
         end if;    
     end process;
     
