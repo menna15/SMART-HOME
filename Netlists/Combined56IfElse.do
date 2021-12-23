@@ -6,7 +6,7 @@ vsim work.combined56_ifelse
 # Loading ieee.std_logic_1164(body)
 # Loading work.combined56_ifelse(design_architecture)
 add wave -position insertpoint  \
-sim:/combined56_ifelse/Clk \
+sim:/combined56_ifelse/clk \
 sim:/combined56_ifelse/Rst \
 sim:/combined56_ifelse/SFD \
 sim:/combined56_ifelse/SRD \
@@ -20,7 +20,7 @@ sim:/combined56_ifelse/alarmbuzz \
 sim:/combined56_ifelse/heater \
 sim:/combined56_ifelse/cooler \
 sim:/combined56_ifelse/display
-force -freeze sim:/combined56_ifelse/Clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/combined56_ifelse/clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/combined56_ifelse/Rst 1 0
 run
 force -freeze sim:/combined56_ifelse/Rst 0 0

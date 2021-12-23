@@ -1,6 +1,6 @@
 vsim work.seperate56_ifelse
 add wave -position insertpoint  \
-sim:/seperate56_ifelse/Clk \
+sim:/seperate56_ifelse/clk \
 sim:/seperate56_ifelse/Rst \
 sim:/seperate56_ifelse/SFD \
 sim:/seperate56_ifelse/SRD \
@@ -14,7 +14,7 @@ sim:/seperate56_ifelse/alarmbuzz \
 sim:/seperate56_ifelse/heater \
 sim:/seperate56_ifelse/cooler \
 sim:/seperate56_ifelse/display 
-force -freeze sim:/seperate56_ifelse/Clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/seperate56_ifelse/clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/seperate56_ifelse/Rst 1 0
 run
 force -freeze sim:/seperate56_ifelse/Rst 0 0

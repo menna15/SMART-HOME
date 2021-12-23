@@ -19,9 +19,7 @@ sim:/keep_h_c_value_ifelse/winbuzz \
 sim:/keep_h_c_value_ifelse/alarmbuzz \
 sim:/keep_h_c_value_ifelse/heater \
 sim:/keep_h_c_value_ifelse/cooler \
-sim:/keep_h_c_value_ifelse/display \
-sim:/keep_h_c_value_ifelse/state \
-sim:/keep_h_c_value_ifelse/next_state
+sim:/keep_h_c_value_ifelse/display
 force -freeze sim:/keep_h_c_value_ifelse/Clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/keep_h_c_value_ifelse/Rst 1 0
 run

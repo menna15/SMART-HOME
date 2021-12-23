@@ -19,9 +19,7 @@ sim:/separate56/winbuzz \
 sim:/separate56/alarmbuzz \
 sim:/separate56/heater \
 sim:/separate56/cooler \
-sim:/separate56/display \
-sim:/separate56/current_state \
-sim:/separate56/next_state
+sim:/separate56/display 
 force -freeze sim:/separate56/Clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/separate56/Rst 1 0
 run

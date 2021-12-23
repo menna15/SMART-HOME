@@ -19,9 +19,7 @@ sim:/mealy/winbuzz \
 sim:/mealy/alarmbuzz \
 sim:/mealy/heater \
 sim:/mealy/cooler \
-sim:/mealy/display \
-sim:/mealy/state \
-sim:/mealy/next_state
+sim:/mealy/display
 force -freeze sim:/mealy/Clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/mealy/Rst 1 0
 force -freeze sim:/mealy/ST 0110010 0
