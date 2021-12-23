@@ -1,217 +1,217 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
 -- Design 2 idea : is to keep the output if heater or cooler = 1 untill the tempreture change to the normal range --
-entity seperate56_ifelse is  
-    port (
-    Clk : in std_logic; 
-    Rst : in std_logic; -- reset input
-    SFD : in std_logic;
-    SRD : in std_logic; 
-    SW  : in std_logic; 
-    SFA : in std_logic; 
-    ST  : in std_logic_vector (6 Downto 0); 
+ENTITY seperate56_ifelse IS
+    PORT (
+        Clk : IN STD_LOGIC;
+        Rst : IN STD_LOGIC; -- reset input
+        SFD : IN STD_LOGIC;
+        SRD : IN STD_LOGIC;
+        SW : IN STD_LOGIC;
+        SFA : IN STD_LOGIC;
+        ST : IN STD_LOGIC_VECTOR (6 DOWNTO 0);
 
-    fdoor     : out std_logic;
-    rdoor     : out std_logic;
-    winbuzz   : out std_logic;
-    alarmbuzz : out std_logic;
-    heater    : out std_logic;
-    cooler    : out std_logic;
-    display   : out std_logic_vector (2 Downto 0) -- 
-);
-end seperate56_ifelse;
+        fdoor : OUT STD_LOGIC;
+        rdoor : OUT STD_LOGIC;
+        winbuzz : OUT STD_LOGIC;
+        alarmbuzz : OUT STD_LOGIC;
+        heater : OUT STD_LOGIC;
+        cooler : OUT STD_LOGIC;
+        display : OUT STD_LOGIC_VECTOR (2 DOWNTO 0) -- 
+    );
+END seperate56_ifelse;
 
-architecture Design_Architecture of seperate56_ifelse is
-type state_type is (s0, s1, s2, s3, s4, s5, s6); 
-signal state, next_state: state_type;
+ARCHITECTURE Design_Architecture OF seperate56_ifelse IS
+    TYPE state_type IS (s0, s1, s2, s3, s4, s5, s6);
+    SIGNAL state, next_state : state_type;
 
-begin
+BEGIN
     -- Block1 unsynchronous reset--
-    process(Clk,Rst)
-    begin
-        if( Rst='1') then
+    PROCESS (Clk, Rst)
+    BEGIN
+        IF (Rst = '1') THEN
             state <= s0;
-        elsif( rising_edge(Clk) ) then
+        ELSIF (rising_edge(Clk)) THEN
             state <= next_state;
-        end if;
-    end process;
-    
+        END IF;
+    END PROCESS;
+
     -- Block2 of FSM for selecting the next state depending on current state & input --
-    process(state,SFD,SRD,SFA,SW,ST)
-    begin
-        
-        if (state = s0 or state = s6) then
-            if(SFD='1') then
-            next_state <= s1;
-            elsif(SRD='1') then
-            next_state <= s2;
-            elsif(SFA='1') then
-            next_state <= s3;
-            elsif(SW='1') then
-            next_state <= s4;
-            elsif(ST<"0110010") then
-            next_state <= s5;
-            elsif(ST>"1000110") then
-            next_state <= s6;
-            else
-            next_state <= s0;
-            end if;
+    PROCESS (state, SFD, SRD, SFA, SW, ST)
+    BEGIN
 
-        elsif (state = s1) then
-            if(SRD='1') then
-            next_state <= s2;
-            elsif(SFA='1') then
-            next_state <= s3;
-            elsif(SW='1') then
-            next_state <= s4;
-            elsif(ST<"0110010") then
-            next_state <= s5;
-            elsif(ST>"1000110") then
-            next_state <= s5;
-            elsif(SFD='1') then
-            next_state <= s1;
-            else
-            next_state <= s0;
-            end if;
-
-        elsif (state = s2) then
-            if(SFA='1') then
-                next_state <= s3;
-            elsif(SW='1') then
-                next_state <= s4;
-            elsif(ST<"0110010") then
-                next_state <= s5;
-            elsif(ST>"1000110") then
-                next_state <= s6;
-            elsif(SFD='1') then
+        IF (state = s0 OR state = s6) THEN
+            IF (SFD = '1') THEN
                 next_state <= s1;
-            elsif(SRD='1') then
+            ELSIF (SRD = '1') THEN
                 next_state <= s2;
-            else
-                next_state<=s0;
-            end if;
-              
-        elsif (state = s3) then
-            if(SW='1') then
-            next_state <= s4;
-            elsif(ST<"0110010") then
-            next_state <= s5;
-            elsif(ST>"1000110") then
-            next_state <= s6;
-            elsif(SFD='1') then
-            next_state <= s1;
-            elsif(SRD='1') then
-            next_state <= s2;
-            elsif(SFA='1') then
-            next_state <= s3;
-            else
-            next_state <= s0;
-            end if;
-               
-        elsif (state = s4) then
-            if(ST<"0110010") then
-            next_state <= s5;
-            elsif(ST>"1000110") then
-            next_state <= s6;
-            elsif(SFD='1') then
-            next_state <= s1;
-            elsif(SRD='1') then
-            next_state <= s2;
-            elsif(SFA='1') then
-            next_state <= s3;
-            elsif(SW='1') then
-            next_state <= s4;
-            else
-            next_state <= s0;
-            end if;
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+            ELSIF (ST > "1000110") THEN
+                next_state <= s6;
+            ELSE
+                next_state <= s0;
+            END IF;
 
-        else -- state 5
-            if(ST>"1000110") then
-            next_state <= s6;
-            elsif(SFD='1') then
-            next_state <= s1;
-            elsif(SRD='1') then
-            next_state <= s2;
-            elsif(SFA='1') then
-            next_state <= s3;
-            elsif(SW='1') then
-            next_state <= s4;
-            elsif(ST<"0110010") then
-            next_state <= s5;
-            else
-            next_state <= s0;
-            end if;
-            
-        end if;    
-    end process;
-    
+        ELSIF (state = s1) THEN
+            IF (SRD = '1') THEN
+                next_state <= s2;
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+            ELSIF (ST > "1000110") THEN
+                next_state <= s5;
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+            ELSE
+                next_state <= s0;
+            END IF;
+
+        ELSIF (state = s2) THEN
+            IF (SFA = '1') THEN
+                next_state <= s3;
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+            ELSIF (ST > "1000110") THEN
+                next_state <= s6;
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+            ELSE
+                next_state <= s0;
+            END IF;
+
+        ELSIF (state = s3) THEN
+            IF (SW = '1') THEN
+                next_state <= s4;
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+            ELSIF (ST > "1000110") THEN
+                next_state <= s6;
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+            ELSE
+                next_state <= s0;
+            END IF;
+
+        ELSIF (state = s4) THEN
+            IF (ST < "0110010") THEN
+                next_state <= s5;
+            ELSIF (ST > "1000110") THEN
+                next_state <= s6;
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+            ELSE
+                next_state <= s0;
+            END IF;
+
+        ELSE -- state 5
+            IF (ST > "1000110") THEN
+                next_state <= s6;
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+            ELSE
+                next_state <= s0;
+            END IF;
+
+        END IF;
+    END PROCESS;
+
     -- Block3 of FSM for selecting the output depending on the current state --
-    process(state)
-    begin
-        if (state = s0) then
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '0';
-            display  <= "000";
+    PROCESS (state)
+    BEGIN
+        IF (state = s0) THEN
+            fdoor <= '0';
+            rdoor <= '0';
+            winbuzz <= '0';
+            alarmbuzz <= '0';
+            heater <= '0';
+            cooler <= '0';
+            display <= "000";
 
-        elsif (state = s1) then
-            fdoor    <= '1';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '0';
-            display  <= "001";
+        ELSIF (state = s1) THEN
+            fdoor <= '1';
+            rdoor <= '0';
+            winbuzz <= '0';
+            alarmbuzz <= '0';
+            heater <= '0';
+            cooler <= '0';
+            display <= "001";
 
-        elsif (state = s2) then
-            fdoor    <= '0';
-            rdoor    <= '1';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '0';
-            display  <= "010";
+        ELSIF (state = s2) THEN
+            fdoor <= '0';
+            rdoor <= '1';
+            winbuzz <= '0';
+            alarmbuzz <= '0';
+            heater <= '0';
+            cooler <= '0';
+            display <= "010";
 
-        elsif (state = s3) then
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '1';
-            heater   <= '0';
-            cooler   <= '0';
-            display  <= "011";
+        ELSIF (state = s3) THEN
+            fdoor <= '0';
+            rdoor <= '0';
+            winbuzz <= '0';
+            alarmbuzz <= '1';
+            heater <= '0';
+            cooler <= '0';
+            display <= "011";
 
-        elsif (state = s4) then
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '1';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '0';
-            display  <= "100";
+        ELSIF (state = s4) THEN
+            fdoor <= '0';
+            rdoor <= '0';
+            winbuzz <= '1';
+            alarmbuzz <= '0';
+            heater <= '0';
+            cooler <= '0';
+            display <= "100";
 
-        elsif (state = s5) then
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '1';
-            cooler   <= '0';
-            display  <= "101";
+        ELSIF (state = s5) THEN
+            fdoor <= '0';
+            rdoor <= '0';
+            winbuzz <= '0';
+            alarmbuzz <= '0';
+            heater <= '1';
+            cooler <= '0';
+            display <= "101";
 
-        else
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '1';
-            display  <= "110";
-        end if;    
-    end process;
+        ELSE
+            fdoor <= '0';
+            rdoor <= '0';
+            winbuzz <= '0';
+            alarmbuzz <= '0';
+            heater <= '0';
+            cooler <= '1';
+            display <= "110";
+        END IF;
+    END PROCESS;
 
-end architecture;
+END ARCHITECTURE;

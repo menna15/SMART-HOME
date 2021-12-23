@@ -136,8 +136,8 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            heater <= '0';
-            cooler <= '0';
+            heater <= 'Z';
+            cooler <= 'Z';
             display <= "000";
 
         ELSIF (state = s1) THEN
@@ -145,8 +145,8 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            heater <= '0';
-            cooler <= '0';
+            heater <= 'Z';
+            cooler <= 'Z';
             display <= "001";
 
         ELSIF (state = s2) THEN
@@ -154,8 +154,8 @@ BEGIN
             rdoor <= '1';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            heater <= '0';
-            cooler <= '0';
+            heater <= 'Z';
+            cooler <= 'Z';
             display <= "010";
 
         ELSIF (state = s3) THEN
@@ -163,8 +163,8 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '1';
-            heater <= '0';
-            cooler <= '0';
+            heater <= 'Z';
+            cooler <= 'Z';
             display <= "011";
 
         ELSIF (state = s4) THEN
@@ -172,8 +172,13 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '1';
             alarmbuzz <= '0';
-            heater <= '0';
-            cooler <= '0';
+            IF (next_state ! = Five AND next_state ! = Six) THEN
+                heater <= '0';
+                cooler <= '0';
+            ELSE
+                heater <= 'Z';
+                cooler <= 'Z';
+            END IF;
             display <= "100";
 
         ELSIF (state = s5) THEN

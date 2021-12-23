@@ -1,226 +1,226 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity Separate56 is
-port (
- Clk: in std_logic; --- clock signal
- Rst: in std_logic; -- reset input
- SFD: in std_logic;
- SRD: in std_logic; 
- SW: in std_logic; 
- SFA: in std_logic; 
- ST: in std_logic_vector (6 Downto 0); 
- fdoor: out std_logic;
- rdoor: out std_logic;
- winbuzz: out std_logic;
- alarmbuzz: out std_logic;
- heater: out std_logic;
- cooler: out std_logic;
- display: out std_logic_vector (2 Downto 0)
-);
-end Separate56;
+ENTITY Separate56 IS
+  PORT (
+    Clk : IN STD_LOGIC; --- clock signal
+    Rst : IN STD_LOGIC; -- reset input
+    SFD : IN STD_LOGIC;
+    SRD : IN STD_LOGIC;
+    SW : IN STD_LOGIC;
+    SFA : IN STD_LOGIC;
+    ST : IN STD_LOGIC_VECTOR (6 DOWNTO 0);
+    fdoor : OUT STD_LOGIC;
+    rdoor : OUT STD_LOGIC;
+    winbuzz : OUT STD_LOGIC;
+    alarmbuzz : OUT STD_LOGIC;
+    heater : OUT STD_LOGIC;
+    cooler : OUT STD_LOGIC;
+    display : OUT STD_LOGIC_VECTOR (2 DOWNTO 0)
+  );
+END Separate56;
 
-architecture Behavioral of Separate56 is
-type MOORE_FSM is (Zero, One, Two, Three, Four, Five, six); --Five heater, Six cooler
-signal current_state, next_state: MOORE_FSM;
+ARCHITECTURE Behavioral OF Separate56 IS
+  TYPE MOORE_FSM IS (Zero, One, Two, Three, Four, Five, six); --Five heater, Six cooler
+  SIGNAL current_state, next_state : MOORE_FSM;
 
-begin
--- Sequential memory of the VHDL MOORE FSM Sequence Detector
-process(Clk,Rst)
-begin
- if(Rst='1') then
-  current_state <= Zero;
- elsif(rising_edge(Clk)) then
-  current_state <= next_state;
- end if;
-end process;
--- Next state logic of the VHDL MOORE FSM Sequence Detector
--- Combinational logic
-process(current_state,SFD,SRD,SFA,SW,ST)
-begin
- case(current_state) is
+BEGIN
+  -- Sequential memory of the VHDL MOORE FSM Sequence Detector
+  PROCESS (Clk, Rst)
+  BEGIN
+    IF (Rst = '1') THEN
+      current_state <= Zero;
+    ELSIF (rising_edge(Clk)) THEN
+      current_state <= next_state;
+    END IF;
+  END PROCESS;
+  -- Next state logic of the VHDL MOORE FSM Sequence Detector
+  -- Combinational logic
+  PROCESS (current_state, SFD, SRD, SFA, SW, ST)
+  BEGIN
+    CASE(current_state) IS
 
- when Zero =>
-  if(SFD='1') then
-   next_state <= One;
-  elsif(SRD='1') then
-   next_state <= Two;
-  elsif(SFA='1') then
-   next_state <= Three;
-  elsif(SW='1') then
-   next_state <= Four;
-  elsif(ST<"0110010") then
-   next_state <= Five;
-  elsif(ST>"1000110") then
-   next_state <= Six;
-  else
-   next_state<=Zero;
-  end if;
+      WHEN Zero =>
+      IF (SFD = '1') THEN
+        next_state <= One;
+      ELSIF (SRD = '1') THEN
+        next_state <= Two;
+      ELSIF (SFA = '1') THEN
+        next_state <= Three;
+      ELSIF (SW = '1') THEN
+        next_state <= Four;
+      ELSIF (ST < "0110010") THEN
+        next_state <= Five;
+      ELSIF (ST > "1000110") THEN
+        next_state <= Six;
+      ELSE
+        next_state <= Zero;
+      END IF;
 
- when One =>
-  if(SRD='1') then
-   next_state <= Two;
-  elsif(SFA='1') then
-   next_state <= Three;
-  elsif(SW='1') then
-   next_state <= Four;
-  elsif(ST<"0110010") then
-   next_state <= Five;
-  elsif(ST>"1000110") then
-   next_state <= Six;
-  elsif(SFD='1') then
-   next_state <= One;
-  else
-   next_state<=Zero;
-  end if;
-    
- when Two => 
-  if(SFA='1') then
-   next_state <= Three;
-  elsif(SW='1') then
-   next_state <= Four;
-  elsif(ST<"0110010") then
-   next_state <= Five;
-  elsif(ST>"1000110") then
-   next_state <= Six;
-  elsif(SFD='1') then
-   next_state <= One;
-  elsif(SRD='1') then
-   next_state <= Two;
-  else
-   next_state<=Zero;
-  end if;
- 
- when Three =>
-  if(SW='1') then
-   next_state <= Four;
-  elsif(ST<"0110010") then
-   next_state <= Five;
-  elsif(ST>"1000110") then
-   next_state <= Six;
-  elsif(SFD='1') then
-   next_state <= One;
-  elsif(SRD='1') then
-   next_state <= Two;
-  elsif(SFA='1') then
-   next_state <= Three;
-  else
-   next_state<=Zero;
-  end if;
-  
- when Four =>
-  if(ST<"0110010") then
-   next_state <= Five;
-  elsif(ST>"1000110") then
-   next_state <= Six;
-  elsif(SFD='1') then
-   next_state <= One;
-  elsif(SRD='1') then
-   next_state <= Two;
-  elsif(SFA='1') then
-   next_state <= Three;
-  elsif(SW='1') then
-   next_state <= Four;
-  else
-   next_state<=Zero;
-  end if;
+      WHEN One =>
+      IF (SRD = '1') THEN
+        next_state <= Two;
+      ELSIF (SFA = '1') THEN
+        next_state <= Three;
+      ELSIF (SW = '1') THEN
+        next_state <= Four;
+      ELSIF (ST < "0110010") THEN
+        next_state <= Five;
+      ELSIF (ST > "1000110") THEN
+        next_state <= Six;
+      ELSIF (SFD = '1') THEN
+        next_state <= One;
+      ELSE
+        next_state <= Zero;
+      END IF;
 
-when Five =>
-  if(ST>"1000110") then
-   next_state <= Six;
-  elsif(SFD='1') then
-   next_state <= One;
-  elsif(SRD='1') then
-   next_state <= Two;
-  elsif(SFA='1') then
-   next_state <= Three;
-  elsif(SW='1') then
-   next_state <= Four;
-  elsif(ST<"0110010") then
-   next_state <= Five;
-  else
-   next_state<=Zero;
-  end if;
+      WHEN Two =>
+      IF (SFA = '1') THEN
+        next_state <= Three;
+      ELSIF (SW = '1') THEN
+        next_state <= Four;
+      ELSIF (ST < "0110010") THEN
+        next_state <= Five;
+      ELSIF (ST > "1000110") THEN
+        next_state <= Six;
+      ELSIF (SFD = '1') THEN
+        next_state <= One;
+      ELSIF (SRD = '1') THEN
+        next_state <= Two;
+      ELSE
+        next_state <= Zero;
+      END IF;
 
-when Six =>
-  if(SFD='1') then
-   next_state <= One;
-  elsif(SRD='1') then
-   next_state <= Two;
-  elsif(SFA='1') then
-   next_state <= Three;
-  elsif(SW='1') then
-   next_state <= Four;
-  elsif(ST<"0110010") then
-   next_state <= Five;
-  elsif(ST>"1000110") then
-   next_state <= Six;
- else
-   next_state<=Zero;
-  end if;
+      WHEN Three =>
+      IF (SW = '1') THEN
+        next_state <= Four;
+      ELSIF (ST < "0110010") THEN
+        next_state <= Five;
+      ELSIF (ST > "1000110") THEN
+        next_state <= Six;
+      ELSIF (SFD = '1') THEN
+        next_state <= One;
+      ELSIF (SRD = '1') THEN
+        next_state <= Two;
+      ELSIF (SFA = '1') THEN
+        next_state <= Three;
+      ELSE
+        next_state <= Zero;
+      END IF;
 
- end case;
-end process;
--- Output logic of the VHDL MOORE FSM Sequence Detector
-process(current_state)
-begin 
- case current_state is
- when Zero =>
-  fdoor <= '0';
-  rdoor <= '0';
-  winbuzz <= '0';
-  alarmbuzz <= '0';
-  heater <= '0';
-  cooler <= '0';
-  display <= "000";
- when One =>
-  fdoor <= '1';
-  rdoor <= '0';
-  winbuzz <= '0';
-  alarmbuzz <= '0';
-  heater <= '0';
-  cooler <= '0';
-  display <= "001";
- when Two => 
-  fdoor <= '0';
-  rdoor <= '1';
-  winbuzz <= '0';
-  alarmbuzz <= '0';
-  heater <= '0';
-  cooler <= '0';
-  display <= "010";
- when Three => 
-  fdoor <= '0';
-  rdoor <= '0';
-  winbuzz <= '0';
-  alarmbuzz <= '1';
-  heater <= '0';
-  cooler <= '0';
-  display <= "011";
-when Four => 
-  fdoor <= '0';
-  rdoor <= '0';
-  winbuzz <= '1';
-  alarmbuzz <= '0';
-  heater <= '0';
-  cooler <= '0';
-  display <= "100";
- when Five => 
-  fdoor <= '0';
-  rdoor <= '0';
-  winbuzz <= '0';
-  alarmbuzz <= '0';
-  heater <= '1';
-  cooler <= '0';
-  display <= "101";
- when Six => 
-  fdoor <= '0';
-  rdoor <= '1';
-  winbuzz <= '0';
-  alarmbuzz <= '0';
-  heater <= '0';
-  cooler <= '1';
-  display <= "110";
- end case;
-end process;
-end Behavioral;
+      WHEN Four =>
+      IF (ST < "0110010") THEN
+        next_state <= Five;
+      ELSIF (ST > "1000110") THEN
+        next_state <= Six;
+      ELSIF (SFD = '1') THEN
+        next_state <= One;
+      ELSIF (SRD = '1') THEN
+        next_state <= Two;
+      ELSIF (SFA = '1') THEN
+        next_state <= Three;
+      ELSIF (SW = '1') THEN
+        next_state <= Four;
+      ELSE
+        next_state <= Zero;
+      END IF;
+
+      WHEN Five =>
+      IF (ST > "1000110") THEN
+        next_state <= Six;
+      ELSIF (SFD = '1') THEN
+        next_state <= One;
+      ELSIF (SRD = '1') THEN
+        next_state <= Two;
+      ELSIF (SFA = '1') THEN
+        next_state <= Three;
+      ELSIF (SW = '1') THEN
+        next_state <= Four;
+      ELSIF (ST < "0110010") THEN
+        next_state <= Five;
+      ELSE
+        next_state <= Zero;
+      END IF;
+
+      WHEN Six =>
+      IF (SFD = '1') THEN
+        next_state <= One;
+      ELSIF (SRD = '1') THEN
+        next_state <= Two;
+      ELSIF (SFA = '1') THEN
+        next_state <= Three;
+      ELSIF (SW = '1') THEN
+        next_state <= Four;
+      ELSIF (ST < "0110010") THEN
+        next_state <= Five;
+      ELSIF (ST > "1000110") THEN
+        next_state <= Six;
+      ELSE
+        next_state <= Zero;
+      END IF;
+
+    END CASE;
+  END PROCESS;
+  -- Output logic of the VHDL MOORE FSM Sequence Detector
+  PROCESS (current_state)
+  BEGIN
+    CASE current_state IS
+      WHEN Zero =>
+        fdoor <= '0';
+        rdoor <= '0';
+        winbuzz <= '0';
+        alarmbuzz <= '0';
+        heater <= '0';
+        cooler <= '0';
+        display <= "000";
+      WHEN One =>
+        fdoor <= '1';
+        rdoor <= '0';
+        winbuzz <= '0';
+        alarmbuzz <= '0';
+        heater <= '0';
+        cooler <= '0';
+        display <= "001";
+      WHEN Two =>
+        fdoor <= '0';
+        rdoor <= '1';
+        winbuzz <= '0';
+        alarmbuzz <= '0';
+        heater <= '0';
+        cooler <= '0';
+        display <= "010";
+      WHEN Three =>
+        fdoor <= '0';
+        rdoor <= '0';
+        winbuzz <= '0';
+        alarmbuzz <= '1';
+        heater <= '0';
+        cooler <= '0';
+        display <= "011";
+      WHEN Four =>
+        fdoor <= '0';
+        rdoor <= '0';
+        winbuzz <= '1';
+        alarmbuzz <= '0';
+        heater <= '0';
+        cooler <= '0';
+        display <= "100";
+      WHEN Five =>
+        fdoor <= '0';
+        rdoor <= '0';
+        winbuzz <= '0';
+        alarmbuzz <= '0';
+        heater <= '1';
+        cooler <= '0';
+        display <= "101";
+      WHEN Six =>
+        fdoor <= '0';
+        rdoor <= '1';
+        winbuzz <= '0';
+        alarmbuzz <= '0';
+        heater <= '0';
+        cooler <= '1';
+        display <= "110";
+    END CASE;
+  END PROCESS;
+END Behavioral;

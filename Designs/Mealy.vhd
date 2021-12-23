@@ -1,562 +1,630 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
 -- Design 2 idea : is to keep the output if heater or cooler = 1 untill the tempreture change to the normal range --
-entity Mealy is  
-    port (
-    Clk : in std_logic; 
-    Rst : in std_logic; -- reset input
-    SFD : in std_logic;
-    SRD : in std_logic; 
-    SW  : in std_logic; 
-    SFA : in std_logic; 
-    ST  : in std_logic_vector (6 Downto 0); 
+ENTITY Mealy IS
+    PORT (
+        Clk : IN STD_LOGIC;
+        Rst : IN STD_LOGIC; -- reset input
+        SFD : IN STD_LOGIC;
+        SRD : IN STD_LOGIC;
+        SW : IN STD_LOGIC;
+        SFA : IN STD_LOGIC;
+        ST : IN STD_LOGIC_VECTOR (6 DOWNTO 0);
 
-    fdoor     : out std_logic;
-    rdoor     : out std_logic;
-    winbuzz   : out std_logic;
-    alarmbuzz : out std_logic;
-    heater    : out std_logic;
-    cooler    : out std_logic;
-    display   : out std_logic_vector (2 Downto 0) -- 
-);
-end Mealy;
+        fdoor : OUT STD_LOGIC;
+        rdoor : OUT STD_LOGIC;
+        winbuzz : OUT STD_LOGIC;
+        alarmbuzz : OUT STD_LOGIC;
+        heater : OUT STD_LOGIC;
+        cooler : OUT STD_LOGIC;
+        display : OUT STD_LOGIC_VECTOR (2 DOWNTO 0) -- 
+    );
+END Mealy;
 
-architecture Mealy_arch of Mealy is
-type state_type is (s0, s1, s2, s3, s4, s5, s6); 
-signal state, next_state: state_type;
+ARCHITECTURE Mealy_arch OF Mealy IS
+    TYPE state_type IS (s0, s1, s2, s3, s4, s5, s6);
+    SIGNAL state, next_state : state_type;
 
-begin
+BEGIN
     -- Block1 unsynchronous reset--
-    process(Clk,Rst)
-    begin
-        if( Rst='1') then
+    PROCESS (Clk, Rst)
+    BEGIN
+        IF (Rst = '1') THEN
             state <= s0;
-        elsif( rising_edge(Clk) ) then
+        ELSIF (rising_edge(Clk)) THEN
             state <= next_state;
-        end if;
-    end process;
-    
+        END IF;
+    END PROCESS;
+
     -- Block2 of Mealy FSM for selecting the next state & output depending on current state & input --
 
-    process(state,SFD,SRD,SFA,SW,ST)
-    begin
-        
-        case(state) is
+    PROCESS (state, SFD, SRD, SFA, SW, ST)
+    BEGIN
+
+        CASE(state) IS
             ---------------------------------------------------------------
-            when s0 =>
-                if(SFD='1') then
+            WHEN s0 =>
+            IF (SFD = '1') THEN
                 next_state <= s1;
-                fdoor    <= '1';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "001";
+                fdoor <= '1';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "001";
 
-                elsif(SRD='1') then
+            ELSIF (SRD = '1') THEN
                 next_state <= s2;
-                fdoor    <= '0';
-                rdoor    <= '1';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "010";
+                fdoor <= '0';
+                rdoor <= '1';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "010";
 
-                elsif(SFA='1') then
+            ELSIF (SFA = '1') THEN
                 next_state <= s3;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '1';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "011";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '1';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "011";
 
-                elsif(SW='1') then
+            ELSIF (SW = '1') THEN
                 next_state <= s4;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '1';
-                alarmbuzz<= '0';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "100";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '1';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "100";
 
-                elsif(ST<"0110010") then
+            ELSIF (ST < "0110010") THEN
                 next_state <= s5;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                heater   <= '1';
-                cooler   <= '0';
-                display  <= "101";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '1';
+                cooler <= '0';
+                display <= "101";
 
-                elsif(ST>"1000110") then
+            ELSIF (ST > "1000110") THEN
                 next_state <= s6;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                heater   <= '0';
-                cooler   <= '1';
-                display  <= "110";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '0';
+                cooler <= '1';
+                display <= "110";
 
-                else
+            ELSE
                 next_state <= s0;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "000";
-            end if;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "000";
+            END IF;
             --------------------------------------------------------------------------------
-            when s1 =>
-               if(SRD='1') then
+            WHEN s1 =>
+            IF (SRD = '1') THEN
                 next_state <= s2;
-                fdoor    <= '0';
-                rdoor    <= '1';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "010";
+                fdoor <= '0';
+                rdoor <= '1';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "010";
 
-               elsif(SFA='1') then
+            ELSIF (SFA = '1') THEN
                 next_state <= s3;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '1';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "011";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '1';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "011";
 
-               elsif(SW='1') then
+            ELSIF (SW = '1') THEN
                 next_state <= s4;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '1';
-                alarmbuzz<= '0';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "100";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '1';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "100";
 
-               elsif(ST<"0110010") then
+            ELSIF (ST < "0110010") THEN
                 next_state <= s5;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                heater   <= '1';
-                cooler   <= '0';
-                display  <= "101";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '1';
+                cooler <= '0';
+                display <= "101";
 
-                elsif(ST>"1000110") then
+            ELSIF (ST > "1000110") THEN
                 next_state <= s6;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                heater   <= '0';
-                cooler   <= '1';
-                display  <= "110";
-                elsif(SFD='1') then
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '0';
+                cooler <= '1';
+                display <= "110";
+            ELSIF (SFD = '1') THEN
                 next_state <= s1;
-                fdoor    <= '1';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "001";
-    
-                else
+                fdoor <= '1';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "001";
+
+            ELSE
                 next_state <= s0;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-                end if;
-                display  <= "000";
-            end if;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "000";
+            END IF;
 
             -------------------------------------------------------------------------------------
-            when s2 => 
-            if(SFA='1') then
-            next_state <= s3;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '1';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "011";
+            WHEN s2 =>
+            IF (SFA = '1') THEN
+                next_state <= s3;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '1';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "011";
 
-            elsif(SW='1') then
-            next_state <= s4;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '1';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "100";
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '1';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "100";
 
-            elsif(ST<"0110010") then
-            next_state <= s5;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '1';
-            cooler   <= '0';
-            display  <= "101";
-
-            elsif(ST>"1000110") then
-            next_state <= s6;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '1';
-            display  <= "110";
-
-            elsif(SFD='1') then
-            next_state <= s1;
-            fdoor    <= '1';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "001";
-
-            elsif(SRD='1') then
-            next_state <= s2;
-            fdoor    <= '0';
-            rdoor    <= '1';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "010";
-
-            else
-            next_state<=s0;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "000";
-                
-            end if;
-            --------------------------------------------------------------------------------------- 
-            when s3 =>
-            
-            if(SW='1') then
-            next_state <= s4;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '1';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "100";
-
-            elsif(ST<"0110010") then
-            next_state <= s5;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '1';
-            cooler   <= '0';
-            display  <= "101";
-
-            elsif(ST>"1000110") then
-            next_state <= s6;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '1';
-            display  <= "110";
-
-            elsif(SFD='1') then
-            next_state <= s1;
-            fdoor    <= '1';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "001";
-
-            elsif(SRD='1') then
-            next_state <= s2;
-            fdoor    <= '0';
-            rdoor    <= '1';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "010";
-            
-            elsif(SFA='1') then
-            next_state <= s3;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '1';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "011";
-    
-            else
-            next_state<=s0;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "000";
-                
-            end if;
-            ----------------------------------------------------------------------------------------------------  
-            when s4 =>
-            if(ST<"0110010") then
-            next_state <= s5;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '1';
-            cooler   <= '0';
-            display  <= "101";
-
-            elsif(ST>"1000110") then
-            next_state <= s6;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '1';
-            display  <= "110";
-
-            elsif(SFD='1') then
-            next_state <= s1;
-            fdoor    <= '1';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "001";
-
-            elsif(SRD='1') then
-            next_state <= s2;
-            fdoor    <= '0';
-            rdoor    <= '1';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "010";
-
-            elsif(SFA='1') then
-            next_state <= s3;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '1';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "011";
-
-            elsif(SW='1') then
-            next_state <= s4;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '1';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "100";
-
-            else
-            next_state<=s0;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "000";
-
-            end if;
-            ------------------------------------------------------------------------------------------------------
-            when s5 =>
-            if(SFD='1') then
-            next_state <= s1;
-            fdoor    <= '1';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "001";
-
-            elsif(SRD='1') then
-            next_state <= s2;
-            fdoor    <= '0';
-            rdoor    <= '1';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "010";
-
-            elsif(SFA='1') then
-            next_state <= s3;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '1';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "011";
-
-            elsif(SW='1') then
-            next_state <= s4;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '1';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "100";
-
-            elsif(ST<"0110010") then
+            ELSIF (ST < "0110010") THEN
                 next_state <= s5;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                heater   <= '1';
-                cooler   <= '0';
-                display  <= "101";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '1';
+                cooler <= '0';
+                display <= "101";
 
-            elsif(ST>"1000110") then
+            ELSIF (ST > "1000110") THEN
                 next_state <= s6;
-                fdoor    <= '0';
-                rdoor    <= '0';
-                winbuzz  <= '0';
-                alarmbuzz<= '0';
-                heater   <= '0';
-                cooler   <= '1';
-                display  <= "110";
-    
-            else
-            next_state<=s0;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "000";
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '0';
+                cooler <= '1';
+                display <= "110";
 
-            end if;
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+                fdoor <= '1';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "001";
+
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+                fdoor <= '0';
+                rdoor <= '1';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "010";
+
+            ELSE
+                next_state <= s0;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "000";
+
+            END IF;
+            --------------------------------------------------------------------------------------- 
+            WHEN s3 =>
+
+            IF (SW = '1') THEN
+                next_state <= s4;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '1';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "100";
+
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '1';
+                cooler <= '0';
+                display <= "101";
+
+            ELSIF (ST > "1000110") THEN
+                next_state <= s6;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '0';
+                cooler <= '1';
+                display <= "110";
+
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+                fdoor <= '1';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "001";
+
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+                fdoor <= '0';
+                rdoor <= '1';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "010";
+
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '1';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "011";
+
+            ELSE
+                next_state <= s0;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "000";
+
+            END IF;
+            ----------------------------------------------------------------------------------------------------  
+            WHEN s4 =>
+            IF (ST < "0110010") THEN
+                next_state <= s5;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '1';
+                cooler <= '0';
+                display <= "101";
+
+            ELSIF (ST > "1000110") THEN
+                next_state <= s6;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '0';
+                cooler <= '1';
+                display <= "110";
+
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+                fdoor <= '1';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "001";
+
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+                fdoor <= '0';
+                rdoor <= '1';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "010";
+
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '1';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "011";
+
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '1';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "100";
+
+            ELSE
+                next_state <= s0;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "000";
+
+            END IF;
+            ------------------------------------------------------------------------------------------------------
+            WHEN s5 =>
+            IF (SFD = '1') THEN
+                next_state <= s1;
+                fdoor <= '1';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "001";
+
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+                fdoor <= '0';
+                rdoor <= '1';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "010";
+
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '1';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "011";
+
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '1';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "100";
+
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '1';
+                cooler <= '0';
+                display <= "101";
+
+            ELSIF (ST > "1000110") THEN
+                next_state <= s6;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '0';
+                cooler <= '1';
+                display <= "110";
+
+            ELSE
+                next_state <= s0;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "000";
+
+            END IF;
             -------------------------------------------------------------------------------------------------
-            when s6 =>
-            if(SFD='1') then
-            next_state <= s1;
-            fdoor    <= '1';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "001";
+            WHEN s6 =>
+            IF (SFD = '1') THEN
+                next_state <= s1;
+                fdoor <= '1';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "001";
 
-            elsif(SRD='1') then
-            next_state <= s2;
-            fdoor    <= '0';
-            rdoor    <= '1';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "010";
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+                fdoor <= '0';
+                rdoor <= '1';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "010";
 
-            elsif(SFA='1') then
-            next_state <= s3;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '1';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "011";
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '1';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "011";
 
-            elsif(SW='1') then
-            next_state <= s4;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '1';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "100";
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '1';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "100";
 
-            elsif(ST<"0110010") then
-            next_state <= s5;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '1';
-            cooler   <= '0';
-            display  <= "101";
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '1';
+                cooler <= '0';
+                display <= "101";
 
-            elsif(ST>"1000110") then
-            next_state <= s6;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            heater   <= '0';
-            cooler   <= '1';
-            display  <= "110";
-    
-            else
-            next_state<=s0;
-            fdoor    <= '0';
-            rdoor    <= '0';
-            winbuzz  <= '0';
-            alarmbuzz<= '0';
-            if   ((ST>="0110010" and ST<="1000110") or  ST="UUUUUUU") then heater   <= '0'; cooler <= '0';
-            end if;
-            display  <= "000";
+            ELSIF (ST > "1000110") THEN
+                next_state <= s6;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                heater <= '0';
+                cooler <= '1';
+                display <= "110";
 
-            end if;
+            ELSE
+                next_state <= s0;
+                fdoor <= '0';
+                rdoor <= '0';
+                winbuzz <= '0';
+                alarmbuzz <= '0';
+                IF ((ST >= "0110010" AND ST <= "1000110") OR ST = "UUUUUUU") THEN
+                    heater <= '0';
+                    cooler <= '0';
+                END IF;
+                display <= "000";
 
-        end case;    
-    end process;
+            END IF;
+
+        END CASE;
+    END PROCESS;
     --------------------------------------------------------------------------------------
-
-
-end architecture;
+END ARCHITECTURE;
