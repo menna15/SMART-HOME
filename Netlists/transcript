@@ -21,3 +21,153 @@ do combined56
 # Loading work.AOI22_X1
 # Loading work.BUF_X1
 # Loading work.seq_DFF_X2
+# Compile of combined56.syn.v was successful.
+# Compile of NangateOpenCellLibrary.v was successful.
+# Compile of seperate56_ifelse.syn.v was successful.
+# Compile of combined56IfElse.syn.v was successful.
+# Compile of keep_H_C_value.syn.v was successful.
+# Compile of keep_H_C_value_ifElse.syn.v was successful.
+# Compile of Mealy.syn.v was successful.
+# Compile of separate56.syn.v was successful.
+# 8 compiles, 0 failed with no errors.
+do Combined56IfElse.do
+# End time: 15:32:41 on Dec 24,2021, Elapsed time: 1:15:21
+# Errors: 0, Warnings: 0
+# vsim work.combined56_ifelse 
+# Start time: 15:32:42 on Dec 24,2021
+# Loading work.combined56_ifelse
+# Loading work.DFF_X2
+# Loading work.INV_X1
+# Loading work.NAND2_X1
+# Loading work.AND2_X1
+# Loading work.NOR2_X1
+# Loading work.NAND3_X1
+# Loading work.OAI221_X1
+# Loading work.OR3_X1
+# Loading work.OAI21_X1
+# Loading work.NOR3_X1
+# Loading work.AOI21_X1
+# Loading work.OAI33_X1
+# Loading work.NAND4_X1
+# Loading work.AOI22_X1
+# Loading work.OR2_X1
+# Loading work.OAI22_X1
+# Loading work.BUF_X1
+# Loading work.seq_DFF_X2
+do keep_H_C_value
+# End time: 15:33:59 on Dec 24,2021, Elapsed time: 0:01:17
+# Errors: 0, Warnings: 0
+# vsim -gui work.keep_H_C_value 
+# Start time: 15:34:00 on Dec 24,2021
+# Loading work.keep_H_C_value
+# Loading work.DFF_X2
+# Loading work.DLH_X1
+# Loading work.NAND2_X1
+# Loading work.NOR2_X1
+# Loading work.INV_X1
+# Loading work.NAND3_X1
+# Loading work.OAI21_X1
+# Loading work.NOR3_X1
+# Loading work.AOI211_X1
+# Loading work.AOI21_X1
+# Loading work.AOI221_X1
+# Loading work.OR3_X1
+# Loading work.AND3_X1
+# Loading work.AOI22_X1
+# Loading work.BUF_X1
+# Loading work.seq_DFF_X2
+# Loading work.seq_DLH_X1
+do keep_H_C_value_ifElse.do
+# End time: 15:36:13 on Dec 24,2021, Elapsed time: 0:02:13
+# Errors: 0, Warnings: 0
+# vsim work.keep_H_C_value_ifelse 
+# Start time: 15:36:13 on Dec 24,2021
+# Loading work.keep_H_C_value_ifelse
+# Loading work.DFF_X2
+# Loading work.DLH_X1
+# Loading work.INV_X1
+# Loading work.NAND2_X1
+# Loading work.NOR2_X1
+# Loading work.NAND3_X1
+# Loading work.AOI21_X1
+# Loading work.AOI221_X1
+# Loading work.OAI22_X1
+# Loading work.OAI21_X1
+# Loading work.AOI211_X1
+# Loading work.NOR4_X1
+# Loading work.OR3_X1
+# Loading work.NOR3_X1
+# Loading work.OAI221_X1
+# Loading work.OR2_X1
+# Loading work.AND3_X1
+# Loading work.OAI211_X1
+# Loading work.BUF_X1
+# Loading work.seq_DFF_X2
+# Loading work.seq_DLH_X1
+do separate56
+# End time: 15:37:23 on Dec 24,2021, Elapsed time: 0:01:10
+# Errors: 0, Warnings: 0
+# vsim -gui work.Separate56 
+# Start time: 15:37:24 on Dec 24,2021
+# Loading work.Separate56
+# Loading work.DFF_X2
+# Loading work.NAND2_X1
+# Loading work.NOR2_X1
+# Loading work.INV_X1
+# Loading work.NAND3_X1
+# Loading work.AOI21_X1
+# Loading work.OAI21_X1
+# Loading work.OR3_X1
+# Loading work.NOR3_X1
+# Loading work.OAI211_X1
+# Loading work.AOI211_X1
+# Loading work.OAI22_X1
+# Loading work.AND2_X1
+# Loading work.AOI221_X1
+# Loading work.OR2_X1
+# Loading work.OAI221_X1
+# Loading work.AND3_X1
+# Loading work.BUF_X1
+# Loading work.seq_DFF_X2
+do seperate56IfElse.do
+# End time: 15:39:40 on Dec 24,2021, Elapsed time: 0:02:16
+# Errors: 0, Warnings: 0
+# vsim work.seperate56_ifelse 
+# Start time: 15:39:40 on Dec 24,2021
+# Loading work.seperate56_ifelse
+# Loading work.DFF_X2
+# Loading work.INV_X1
+# Loading work.NAND2_X1
+# Loading work.AND2_X1
+# Loading work.NOR2_X1
+# Loading work.NAND3_X1
+# Loading work.OR2_X1
+# Loading work.NOR3_X1
+# Loading work.AOI21_X1
+# Loading work.AOI211_X1
+# Loading work.OAI211_X1
+# Loading work.OAI21_X1
+# Loading work.OAI221_X1
+# Loading work.AOI221_X1
+# Loading work.OAI33_X1
+# Loading work.BUF_X1
+# Loading work.seq_DFF_X2
+do Mealy.do
+# End time: 15:41:54 on Dec 24,2021, Elapsed time: 0:02:14
+# Errors: 0, Warnings: 0
+# vsim work.Mealy 
+# Start time: 15:41:54 on Dec 24,2021
+# Loading work.Mealy
+# Loading work.DFF_X2
+# Loading work.INV_X1
+# Loading work.NAND2_X1
+# Loading work.NAND3_X1
+# Loading work.NAND4_X1
+# Loading work.OAI21_X1
+# Loading work.NOR2_X1
+# Loading work.XNOR2_X1
+# Loading work.AOI22_X1
+# Loading work.AOI21_X1
+# Loading work.AND2_X1
+# Loading work.OAI22_X1
+# Loading work.seq_DFF_X2
