@@ -1,9 +1,9 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 
-ENTITY Combined56 IS
+ENTITY keep_H_C_value IS
   PORT (
-    Clk : IN STD_LOGIC; --- clock signal
+    clk : IN STD_LOGIC; --- clock signal
     Rst : IN STD_LOGIC; -- reset input
     SFD : IN STD_LOGIC;
     SRD : IN STD_LOGIC;
@@ -18,9 +18,9 @@ ENTITY Combined56 IS
     cooler : OUT STD_LOGIC;
     display : OUT STD_LOGIC_VECTOR (2 DOWNTO 0)
   );
-END Combined56;
+END keep_H_C_value;
 
-ARCHITECTURE Behavioral OF Combined56 IS
+ARCHITECTURE Behavioral OF keep_H_C_value IS
   TYPE MOORE_FSM IS (Zero, One, Two, Three, Four, Five, six); --Five heater, Six cooler
   SIGNAL current_state, next_state : MOORE_FSM;
 
@@ -28,10 +28,12 @@ BEGIN
   -- Sequential memory of the VHDL MOORE FSM Sequence Detector
   PROCESS (Clk, Rst)
   BEGIN
-    IF (Rst = '1') THEN
-      current_state <= Zero;
-    ELSIF (rising_edge(Clk)) THEN
-      current_state <= next_state;
+    IF (rising_edge(Clk)) THEN
+	IF (Rst = '1') THEN
+      		current_state <= Zero;
+	ELSE
+      		current_state <= next_state;
+	END IF;
     END IF;
   END PROCESS;
   -- Next state logic of the VHDL MOORE FSM Sequence Detector
@@ -170,44 +172,44 @@ BEGIN
         rdoor <= '0';
         winbuzz <= '0';
         alarmbuzz <= '0';
-        heater <= 'Z';
-        cooler <= 'Z';
+        --heater <= 'Z';
+        --cooler <= 'Z';
         display <= "000";
       WHEN One =>
         fdoor <= '1';
         rdoor <= '0';
         winbuzz <= '0';
         alarmbuzz <= '0';
-        heater <= 'Z';
-        cooler <= 'Z';
+        --heater <= 'Z';
+        --cooler <= 'Z';
         display <= "001";
       WHEN Two =>
         fdoor <= '0';
         rdoor <= '1';
         winbuzz <= '0';
         alarmbuzz <= '0';
-        heater <= 'Z';
-        cooler <= 'Z';
+        --heater <= 'Z';
+        --cooler <= 'Z';
         display <= "010";
       WHEN Three =>
         fdoor <= '0';
         rdoor <= '0';
         winbuzz <= '0';
         alarmbuzz <= '1';
-        heater <= 'Z';
-        cooler <= 'Z';
+        --heater <= 'Z';
+        --cooler <= 'Z';
         display <= "011";
       WHEN Four =>
         fdoor <= '0';
         rdoor <= '0';
         winbuzz <= '1';
         alarmbuzz <= '0';
-        IF (next_state != Five AND next_state != Six) THEN
+        IF (next_state /= Five AND next_state /= Six) THEN
             heater <= '0';
             cooler <= '0';
-        ELSE
-            heater <= 'Z';
-            cooler <= 'Z';
+        --ELSE
+        --    heater <= 'Z';
+        --    cooler <= 'Z';
         END IF;
         display <= "100";
       WHEN Five =>

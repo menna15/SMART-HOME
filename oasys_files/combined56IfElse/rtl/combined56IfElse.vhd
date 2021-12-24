@@ -28,12 +28,14 @@ ARCHITECTURE Design_Architecture OF combined56_ifelse IS
 
 BEGIN
     -- Block1 unsynchronous reset--
-    PROCESS (Clk, Rst)
+    PROCESS (Clk)
     BEGIN
-        IF (Rst = '1') THEN
-            state <= s0;
-        ELSIF (rising_edge(Clk)) THEN
-            state <= next_state;
+        IF (rising_edge(Clk)) THEN
+		IF (Rst = '1') THEN
+            		state <= s0;
+		ELSE
+            		state <= next_state;
+		END IF;
         END IF;
     END PROCESS;
 

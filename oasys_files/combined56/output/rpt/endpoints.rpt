@@ -1,18 +1,18 @@
 Report End Points: 
------+-------+------+-------+------+-----+-----+-----+----------------------+----------------------
-     |Group  |Launch|Capture|Shift |Delay|Depth|Slack|Begin Point           |End Point             
------+-------+------+-------+------+-----+-----+-----+----------------------+----------------------
-1    |default|sysclk|sysclk |1500.0|465.6|    7|825.6|current_state_reg[0]/Q|current_state_reg[1]/D
-2    |default|sysclk|sysclk |1500.0|465.0|    7|831.7|current_state_reg[0]/Q|current_state_reg[2]/D
-3    |default|sysclk|sysclk |1500.0|345.2|    9|946.2|current_state_reg[1]/Q|current_state_reg[0]/D
------+-------+------+-------+------+-----+-----+-----+----------------------+----------------------
+-----+-------+------+-------+------+-----+-----+------+----------------------+----------------------
+     |Group  |Launch|Capture|Shift |Delay|Depth|Slack |Begin Point           |End Point             
+-----+-------+------+-------+------+-----+-----+------+----------------------+----------------------
+1    |default|sysclk|sysclk |1500.0|338.8|    9| 968.8|current_state_reg[0]/Q|current_state_reg[2]/D
+2    |default|sysclk|sysclk |1500.0|293.5|    8|1012.4|current_state_reg[2]/Q|current_state_reg[1]/D
+3    |default|sysclk|sysclk |1500.0|270.5|    8|1035.8|current_state_reg[2]/Q|current_state_reg[0]/D
+-----+-------+------+-------+------+-----+-----+------+----------------------+----------------------
 Report End Points: 
 -----+-----+--------------+-------+------+-----+-----+-----+-----------+----------------------
      |Group|Launch        |Capture|Shift |Delay|Depth|Slack|Begin Point|End Point             
 -----+-----+--------------+-------+------+-----+-----+-----+-----------+----------------------
-1    |I2R  |rtDefaultClock|sysclk |1500.0|475.1|    6|285.5|ST[3]      |current_state_reg[1]/D
-2    |I2R  |rtDefaultClock|sysclk |1500.0|378.3|    5|387.8|SFA        |current_state_reg[2]/D
-3    |I2R  |rtDefaultClock|sysclk |1500.0|301.5|    6|464.6|ST[3]      |current_state_reg[0]/D
+1    |I2R  |rtDefaultClock|sysclk |1500.0|313.8|    8|445.1|ST[1]      |current_state_reg[1]/D
+2    |I2R  |rtDefaultClock|sysclk |1500.0|279.9|    7|482.2|ST[1]      |current_state_reg[2]/D
+3    |I2R  |rtDefaultClock|sysclk |1500.0|278.6|    6|489.7|ST[3]      |current_state_reg[0]/D
 -----+-----+--------------+-------+------+-----+-----+-----+-----------+----------------------
 Report End Points: 
 -----+-----+------+-------+-----+-----+-----+-----+-----------+---------
@@ -24,7 +24,7 @@ Report End Points:
 -----+-----+------+-------+-----+-----+-----+--------+----------------------+---------
      |Group|Launch|Capture|Shift|Delay|Depth|Slack   |Begin Point           |End Point
 -----+-----+------+-------+-----+-----+-----+--------+----------------------+---------
-1    |R2O  |sysclk|vsysclk|500.0| 59.5|    2|-17728.9|current_state_reg[0]/Q|fdoor    
-2    |R2O  |sysclk|vsysclk|500.0| 50.8|    2|-17725.5|current_state_reg[1]/Q|alarmbuzz
-3    |R2O  |sysclk|vsysclk|500.0| 50.8|    2|-17725.5|current_state_reg[1]/Q|cooler   
+1    |R2O  |sysclk|vsysclk|500.0| 50.8|    2|-17711.5|current_state_reg[1]/Q|alarmbuzz
+2    |R2O  |sysclk|vsysclk|500.0| 50.8|    2|-17711.5|current_state_reg[1]/Q|cooler   
+3    |R2O  |sysclk|vsysclk|500.0| 51.7|    2|-17706.2|current_state_reg[0]/Q|fdoor    
 -----+-----+------+-------+-----+-----+-----+--------+----------------------+---------

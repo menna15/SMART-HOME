@@ -3,7 +3,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY Combined56 IS
   PORT (
-    Clk : IN STD_LOGIC; --- clock signal
+    clk : IN STD_LOGIC; --- clock signal
     Rst : IN STD_LOGIC; -- reset input
     SFD : IN STD_LOGIC;
     SRD : IN STD_LOGIC;
@@ -26,12 +26,14 @@ ARCHITECTURE Behavioral OF Combined56 IS
 
 BEGIN
   -- Sequential memory of the VHDL MOORE FSM Sequence Detector
-  PROCESS (Clk, Rst)
+  PROCESS (Clk)
   BEGIN
-    IF (Rst = '1') THEN
-      current_state <= Zero;
-    ELSIF (rising_edge(Clk)) THEN
-      current_state <= next_state;
+    IF (rising_edge(Clk)) THEN
+	IF (Rst = '1') THEN
+      		current_state <= Zero;
+	ELSE
+      		current_state <= next_state;
+	END IF;
     END IF;
   END PROCESS;
   -- Next state logic of the VHDL MOORE FSM Sequence Detector

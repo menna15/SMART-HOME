@@ -1,0 +1,23 @@
+# Compile of combined56.syn.v was successful.
+# Compile of NangateOpenCellLibrary.v was successful.
+# 2 compiles, 0 failed with no errors.
+do combined56
+# vsim -gui work.Combined56 
+# Start time: 14:17:20 on Dec 24,2021
+# Loading work.Combined56
+# Loading work.DFF_X2
+# Loading work.NAND2_X1
+# Loading work.NOR2_X1
+# Loading work.INV_X1
+# Loading work.AOI222_X1
+# Loading work.OAI21_X1
+# Loading work.OAI22_X1
+# Loading work.AOI21_X1
+# Loading work.NOR3_X1
+# Loading work.AOI221_X1
+# Loading work.AOI211_X1
+# Loading work.OR3_X1
+# Loading work.AND3_X1
+# Loading work.AOI22_X1
+# Loading work.BUF_X1
+# Loading work.seq_DFF_X2

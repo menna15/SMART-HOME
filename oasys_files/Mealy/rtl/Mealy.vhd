@@ -30,10 +30,12 @@ BEGIN
     -- Block1 unsynchronous reset--
     PROCESS (Clk, Rst)
     BEGIN
-        IF (Rst = '1') THEN
-            state <= s0;
-        ELSIF (rising_edge(Clk)) THEN
-            state <= next_state;
+        IF (rising_edge(Clk)) THEN
+		IF (Rst = '1') THEN
+            		state <= s0;
+		ELse
+            		state <= next_state;
+		END IF;
         END IF;
     END PROCESS;
 
