@@ -1,0 +1,42 @@
+vsim -gui work.Combined56TriBuffer
+# vsim -gui work.combined67 
+# Start time: 11:45:42 on Dec 18,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.combined67(behavioral)
+add wave -position insertpoint  \
+sim:/Combined56TriBuffer/Clk \
+sim:/Combined56TriBuffer/Rst \
+sim:/Combined56TriBuffer/SFD \
+sim:/Combined56TriBuffer/SRD \
+sim:/Combined56TriBuffer/SW \
+sim:/Combined56TriBuffer/SFA \
+sim:/Combined56TriBuffer/ST \
+sim:/Combined56TriBuffer/fdoor \
+sim:/Combined56TriBuffer/rdoor \
+sim:/Combined56TriBuffer/winbuzz \
+sim:/Combined56TriBuffer/alarmbuzz \
+sim:/Combined56TriBuffer/heater \
+sim:/Combined56TriBuffer/cooler \
+sim:/Combined56TriBuffer/display \
+sim:/Combined56TriBuffer/current_state \
+sim:/Combined56TriBuffer/next_state
+force -freeze sim:/Combined56TriBuffer/Clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/Combined56TriBuffer/Rst 1 0
+run
+force -freeze sim:/Combined56TriBuffer/SFD 1 0
+force -freeze sim:/Combined56TriBuffer/SRD 0 0
+force -freeze sim:/Combined56TriBuffer/SW 0 0
+force -freeze sim:/Combined56TriBuffer/SFA 0 0
+force -freeze sim:/Combined56TriBuffer/ST 0001111 0
+force -freeze sim:/Combined56TriBuffer/Rst 0 0
+run
+force -freeze sim:/Combined56TriBuffer/SFD 0 0
+run
+force -freeze sim:/Combined56TriBuffer/ST 1101111 0
+force -freeze sim:/Combined56TriBuffer/SW 1 0
+run
+force -freeze sim:/Combined56TriBuffer/SW 0 0
+run
+run

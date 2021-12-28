@@ -1,9 +1,9 @@
 /*
  * Created by 
-   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Tue Dec 28 12:17:10 2021
+   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Fri Dec 24 14:11:11 2021
  * (C) Mentor Graphics Corporation
  */
-/* CheckSum: 1029454957 */
+/* CheckSum: 1372776250 */
 
 module Combined56(clk, Rst, SFD, SRD, SW, SFA, ST, fdoor, rdoor, winbuzz, 
       alarmbuzz, heater, cooler, display);
@@ -28,10 +28,8 @@ module Combined56(clk, Rst, SFD, SRD, SW, SFA, ST, fdoor, rdoor, winbuzz,
    wire n_0_4_0;
    wire n_0_4_1;
    wire n_0_5_0;
-   wire n_0_5_1;
    wire n_0_6_0;
    wire n_0_6_1;
-   wire n_0_6_2;
    wire n_0_0;
    wire n_0_7_0;
    wire n_0_7_1;
@@ -85,25 +83,23 @@ module Combined56(clk, Rst, SFD, SRD, SW, SFA, ST, fdoor, rdoor, winbuzz,
    wire n_0_3;
    wire n_0_4;
 
-   DFF_X2 \current_state_reg[1]  (.D(n_0_1), .CK(clk), .Q(display[1]), .QN());
-   DFF_X2 \current_state_reg[2]  (.D(n_0_2), .CK(clk), .Q(display[2]), .QN());
    DFF_X2 \current_state_reg[0]  (.D(n_0_0), .CK(clk), .Q(display[0]), .QN());
+   DFF_X2 \current_state_reg[2]  (.D(n_0_2), .CK(clk), .Q(display[2]), .QN());
+   DFF_X2 \current_state_reg[1]  (.D(n_0_1), .CK(clk), .Q(display[1]), .QN());
    NAND2_X1 i_0_1_0 (.A1(display[1]), .A2(display[2]), .ZN(n_0_1_0));
    NOR2_X1 i_0_1_1 (.A1(n_0_1_0), .A2(display[0]), .ZN(cooler));
    NAND2_X1 i_0_2_0 (.A1(display[0]), .A2(display[2]), .ZN(n_0_2_0));
    NOR2_X1 i_0_2_1 (.A1(n_0_2_0), .A2(display[1]), .ZN(heater));
-   NAND2_X1 i_0_3_0 (.A1(display[0]), .A2(display[1]), .ZN(n_0_3_0));
+   NAND2_X1 i_0_3_0 (.A1(display[1]), .A2(display[0]), .ZN(n_0_3_0));
    NOR2_X1 i_0_3_1 (.A1(n_0_3_0), .A2(display[2]), .ZN(alarmbuzz));
-   INV_X1 i_0_4_0 (.A(display[0]), .ZN(n_0_4_0));
-   NAND2_X1 i_0_4_1 (.A1(display[2]), .A2(n_0_4_0), .ZN(n_0_4_1));
-   NOR2_X1 i_0_4_2 (.A1(n_0_4_1), .A2(display[1]), .ZN(winbuzz));
-   INV_X1 i_0_5_0 (.A(n_0_5_0), .ZN(rdoor));
-   NAND2_X1 i_0_5_1 (.A1(display[1]), .A2(n_0_5_1), .ZN(n_0_5_0));
-   NOR2_X1 i_0_5_2 (.A1(display[2]), .A2(display[0]), .ZN(n_0_5_1));
-   INV_X1 i_0_6_0 (.A(n_0_6_0), .ZN(fdoor));
-   NAND3_X1 i_0_6_1 (.A1(n_0_6_2), .A2(n_0_6_1), .A3(display[0]), .ZN(n_0_6_0));
-   INV_X1 i_0_6_2 (.A(display[1]), .ZN(n_0_6_1));
-   INV_X1 i_0_6_3 (.A(display[2]), .ZN(n_0_6_2));
+   NOR2_X1 i_0_4_0 (.A1(n_0_4_0), .A2(display[1]), .ZN(winbuzz));
+   NAND2_X1 i_0_4_1 (.A1(display[2]), .A2(n_0_4_1), .ZN(n_0_4_0));
+   INV_X1 i_0_4_2 (.A(display[0]), .ZN(n_0_4_1));
+   INV_X1 i_0_5_0 (.A(display[1]), .ZN(n_0_5_0));
+   NOR2_X1 i_0_5_1 (.A1(n_0_5_0), .A2(display[0]), .ZN(rdoor));
+   INV_X1 i_0_6_0 (.A(display[2]), .ZN(n_0_6_0));
+   NAND2_X1 i_0_6_1 (.A1(n_0_6_0), .A2(display[0]), .ZN(n_0_6_1));
+   NOR2_X1 i_0_6_2 (.A1(n_0_6_1), .A2(display[1]), .ZN(fdoor));
    NOR2_X1 i_0_7_0 (.A1(Rst), .A2(n_0_7_0), .ZN(n_0_0));
    AOI222_X1 i_0_7_1 (.A1(n_0_7_15), .A2(n_0_7_6), .B1(n_0_7_13), .B2(n_0_7_4), 
       .C1(n_0_7_2), .C2(n_0_7_1), .ZN(n_0_7_0));

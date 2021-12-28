@@ -2,9 +2,9 @@ Report End Points:
 -----+-------+------+-------+------+-----+-----+------+----------------------+----------------------
      |Group  |Launch|Capture|Shift |Delay|Depth|Slack |Begin Point           |End Point             
 -----+-------+------+-------+------+-----+-----+------+----------------------+----------------------
-1    |default|sysclk|sysclk |1500.0|338.8|    9| 968.7|current_state_reg[0]/Q|current_state_reg[2]/D
-2    |default|sysclk|sysclk |1500.0|293.5|    8|1010.9|current_state_reg[2]/Q|current_state_reg[1]/D
-3    |default|sysclk|sysclk |1500.0|270.5|    8|1034.3|current_state_reg[2]/Q|current_state_reg[0]/D
+1    |default|sysclk|sysclk |1500.0|338.8|    9| 968.8|current_state_reg[0]/Q|current_state_reg[2]/D
+2    |default|sysclk|sysclk |1500.0|293.5|    8|1012.4|current_state_reg[2]/Q|current_state_reg[1]/D
+3    |default|sysclk|sysclk |1500.0|270.5|    8|1035.8|current_state_reg[2]/Q|current_state_reg[0]/D
 -----+-------+------+-------+------+-----+-----+------+----------------------+----------------------
 Report End Points: 
 -----+-----+--------------+-------+------+-----+-----+-----+-----------+----------------------
@@ -24,7 +24,7 @@ Report End Points:
 -----+-----+------+-------+-----+-----+-----+--------+----------------------+---------
      |Group|Launch|Capture|Shift|Delay|Depth|Slack   |Begin Point           |End Point
 -----+-----+------+-------+-----+-----+-----+--------+----------------------+---------
-1    |R2O  |sysclk|vsysclk|500.0| 59.5|    2|-17714.1|current_state_reg[0]/Q|fdoor    
-2    |R2O  |sysclk|vsysclk|500.0| 51.7|    2|-17712.3|current_state_reg[1]/Q|alarmbuzz
-3    |R2O  |sysclk|vsysclk|500.0| 50.8|    2|-17711.4|current_state_reg[1]/Q|cooler   
+1    |R2O  |sysclk|vsysclk|500.0| 50.8|    2|-17711.5|current_state_reg[1]/Q|alarmbuzz
+2    |R2O  |sysclk|vsysclk|500.0| 50.8|    2|-17711.5|current_state_reg[1]/Q|cooler   
+3    |R2O  |sysclk|vsysclk|500.0| 51.7|    2|-17706.2|current_state_reg[0]/Q|fdoor    
 -----+-----+------+-------+-----+-----+-----+--------+----------------------+---------
