@@ -2,9 +2,9 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 
 -- Design 2 idea : is to keep the output if heater or cooler = 1 untill the tempreture change to the normal range --
-ENTITY combined56_ifelse IS
+ENTITY seperate56_ifelse IS
     PORT (
-        Clk : IN STD_LOGIC;
+        clk : IN STD_LOGIC;
         Rst : IN STD_LOGIC; -- reset input
         SFD : IN STD_LOGIC;
         SRD : IN STD_LOGIC;
@@ -20,21 +20,21 @@ ENTITY combined56_ifelse IS
         cooler : OUT STD_LOGIC;
         display : OUT STD_LOGIC_VECTOR (2 DOWNTO 0) -- 
     );
-END combined56_ifelse;
+END seperate56_ifelse;
 
-ARCHITECTURE Design_Architecture OF combined56_ifelse IS
+ARCHITECTURE Design_Architecture OF seperate56_ifelse IS
     TYPE state_type IS (s0, s1, s2, s3, s4, s5, s6);
     SIGNAL state, next_state : state_type;
 
 BEGIN
     -- Block1 unsynchronous reset--
-    PROCESS (Clk)
+    PROCESS (Clk, Rst)
     BEGIN
         IF (rising_edge(Clk)) THEN
 		IF (Rst = '1') THEN
             		state <= s0;
-		ELSE
-            		state <= next_state;
+		ELSE            		
+			state <= next_state;
 		END IF;
         END IF;
     END PROCESS;
@@ -43,7 +43,7 @@ BEGIN
     PROCESS (state, SFD, SRD, SFA, SW, ST)
     BEGIN
 
-        IF (state = s0 OR state = s5 OR state = s6) THEN
+        IF (state = s0 OR state = s6) THEN
             IF (SFD = '1') THEN
                 next_state <= s1;
             ELSIF (SRD = '1') THEN
@@ -111,7 +111,7 @@ BEGIN
                 next_state <= s0;
             END IF;
 
-        ELSE -- if (state = s4) then
+        ELSIF (state = s4) THEN
             IF (ST < "0110010") THEN
                 next_state <= s5;
             ELSIF (ST > "1000110") THEN
@@ -127,6 +127,24 @@ BEGIN
             ELSE
                 next_state <= s0;
             END IF;
+
+        ELSE -- state 5
+            IF (ST > "1000110") THEN
+                next_state <= s6;
+            ELSIF (SFD = '1') THEN
+                next_state <= s1;
+            ELSIF (SRD = '1') THEN
+                next_state <= s2;
+            ELSIF (SFA = '1') THEN
+                next_state <= s3;
+            ELSIF (SW = '1') THEN
+                next_state <= s4;
+            ELSIF (ST < "0110010") THEN
+                next_state <= s5;
+            ELSE
+                next_state <= s0;
+            END IF;
+
         END IF;
     END PROCESS;
 

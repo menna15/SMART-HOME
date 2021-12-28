@@ -2,9 +2,9 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 
 -- Design 2 idea : is to keep the output if heater or cooler = 1 untill the tempreture change to the normal range --
-ENTITY combined56_ifelse IS
+ENTITY keep_H_C_value_ifelse IS
     PORT (
-        Clk : IN STD_LOGIC;
+        clk : IN STD_LOGIC;
         Rst : IN STD_LOGIC; -- reset input
         SFD : IN STD_LOGIC;
         SRD : IN STD_LOGIC;
@@ -20,15 +20,15 @@ ENTITY combined56_ifelse IS
         cooler : OUT STD_LOGIC;
         display : OUT STD_LOGIC_VECTOR (2 DOWNTO 0) -- 
     );
-END combined56_ifelse;
+END keep_H_C_value_ifelse;
 
-ARCHITECTURE Design_Architecture OF combined56_ifelse IS
+ARCHITECTURE Design_Architecture OF keep_H_C_value_ifelse IS
     TYPE state_type IS (s0, s1, s2, s3, s4, s5, s6);
     SIGNAL state, next_state : state_type;
 
 BEGIN
     -- Block1 unsynchronous reset--
-    PROCESS (Clk)
+    PROCESS (Clk, Rst)
     BEGIN
         IF (rising_edge(Clk)) THEN
 		IF (Rst = '1') THEN
@@ -138,8 +138,8 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            heater <= '0';
-            cooler <= '0';
+            --heater <= 'Z';
+            --cooler <= 'Z';
             display <= "000";
 
         ELSIF (state = s1) THEN
@@ -147,8 +147,8 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            heater <= '0';
-            cooler <= '0';
+            --heater <= 'Z';
+            --cooler <= 'Z';
             display <= "001";
 
         ELSIF (state = s2) THEN
@@ -156,8 +156,8 @@ BEGIN
             rdoor <= '1';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            heater <= '0';
-            cooler <= '0';
+            --heater <= 'Z';
+            --cooler <= 'Z';
             display <= "010";
 
         ELSIF (state = s3) THEN
@@ -165,8 +165,8 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '1';
-            heater <= '0';
-            cooler <= '0';
+            --heater <= 'Z';
+            --cooler <= 'Z';
             display <= "011";
 
         ELSIF (state = s4) THEN
@@ -174,8 +174,13 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '1';
             alarmbuzz <= '0';
-            heater <= '0';
-            cooler <= '0';
+            IF (next_state /= s5 AND next_state /= s6)THEN
+                heater <= '0';
+                cooler <= '0';
+            --ELSE
+            --    heater <= 'Z';
+            --    cooler <= 'Z';
+            END IF;
             display <= "100";
 
         ELSIF (state = s5) THEN
