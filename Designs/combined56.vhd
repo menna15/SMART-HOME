@@ -217,7 +217,7 @@ BEGIN
         display <= "101";
       WHEN Six =>
         fdoor <= '0';
-        rdoor <= '1';
+        rdoor <= '0';
         winbuzz <= '0';
         alarmbuzz <= '0';
         heater <= '0';
