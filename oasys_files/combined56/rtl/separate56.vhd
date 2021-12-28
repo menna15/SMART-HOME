@@ -1,7 +1,7 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 
-ENTITY Combined56 IS
+ENTITY Separate56 IS
   PORT (
     Clk : IN STD_LOGIC; --- clock signal
     Rst : IN STD_LOGIC; -- reset input
@@ -18,15 +18,15 @@ ENTITY Combined56 IS
     cooler : OUT STD_LOGIC;
     display : OUT STD_LOGIC_VECTOR (2 DOWNTO 0)
   );
-END Combined56;
+END Separate56;
 
-ARCHITECTURE Behavioral OF Combined56 IS
+ARCHITECTURE Behavioral OF Separate56 IS
   TYPE MOORE_FSM IS (Zero, One, Two, Three, Four, Five, six); --Five heater, Six cooler
   SIGNAL current_state, next_state : MOORE_FSM;
 
 BEGIN
   -- Sequential memory of the VHDL MOORE FSM Sequence Detector
-  PROCESS (Clk)
+  PROCESS (Clk, Rst)
   BEGIN
     IF (rising_edge(Clk)) THEN
 	IF (Rst = '1') THEN
@@ -128,7 +128,9 @@ BEGIN
       END IF;
 
       WHEN Five =>
-      IF (SFD = '1') THEN
+      IF (ST > "1000110") THEN
+        next_state <= Six;
+      ELSIF (SFD = '1') THEN
         next_state <= One;
       ELSIF (SRD = '1') THEN
         next_state <= Two;
@@ -138,8 +140,6 @@ BEGIN
         next_state <= Four;
       ELSIF (ST < "0110010") THEN
         next_state <= Five;
-      ELSIF (ST > "1000110") THEN
-        next_state <= Six;
       ELSE
         next_state <= Zero;
       END IF;

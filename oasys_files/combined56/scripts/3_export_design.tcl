@@ -36,7 +36,7 @@ write_design ${odb_dir}/demo_adder.odb
 write_mxdb ${mxdb_dir}/demo_adder.mxdb
 
 #Write verilog
-write_verilog ${output_dir}/verilog/combined56.syn.v
+write_verilog ${output_dir}/verilog/demo_adder.syn.v
 
 #Write SDC
 write_sdc ${output_dir}/constraints/demo_adder.oasys.sdc

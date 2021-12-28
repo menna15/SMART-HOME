@@ -3,16 +3,16 @@ Report Physical info:
                         |             |Area (squm)|Leakage (uW)
 ------------------------+-------------+-----------+------------
 Design Name             |Combined56   |           |            
-  Total Instances       |           71|         75|       1.822
+  Total Instances       |           67|         72|       1.761
     Macros              |            0|          0|       0.000
     Pads                |            0|          0|       0.000
     Phys                |            0|          0|       0.000
     Blackboxes          |            0|          0|       0.000
-    Cells               |           71|         75|       1.822
-      Buffers           |            2|          2|       0.043
-      Inverters         |           16|          9|       0.230
+    Cells               |           67|         72|       1.761
+      Buffers           |            1|          1|       0.021
+      Inverters         |           13|          7|       0.187
       Clock-Gates       |            0|          0|       0.000
-      Combinational     |           50|         50|       1.204
+      Combinational     |           50|         49|       1.207
       Latches           |            0|          0|       0.000
       FlipFlops         |            3|         15|       0.345
        Single-Bit FF    |            3|         15|       0.345
@@ -23,14 +23,14 @@ Design Name             |Combined56   |           |
          Clock-Gated    |            0|           |            
   Tristate Pin Count    |            0|           |            
 Physical Info           |Placed       |           |            
-  Chip Size (mm x mm)   |0.071 x 0.071|       5067|            
+  Chip Size (mm x mm)   |0.071 x 0.071|       5038|            
   Fixed Cell Area       |             |          0|            
     Phys Only           |            0|          0|            
-  Placeable Area        |             |        108|            
-  Movable Cell Area     |             |         75|            
-  Utilization (%)       |           69|           |            
-  Chip Utilization (%)  |           69|           |            
-  Total Wire Length (mm)|        0.785|           |            
+  Placeable Area        |             |        106|            
+  Movable Cell Area     |             |         72|            
+  Utilization (%)       |           68|           |            
+  Chip Utilization (%)  |           68|           |            
+  Total Wire Length (mm)|        0.784|           |            
   Longest Wire (mm)     |        0.036|           |            
   Average Wire (mm)     |        0.036|           |            
 ------------------------+-------------+-----------+------------

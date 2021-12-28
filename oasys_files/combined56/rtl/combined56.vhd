@@ -3,7 +3,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY Combined56 IS
   PORT (
-    clk : IN STD_LOGIC; --- clock signal
+    Clk : IN STD_LOGIC; --- clock signal
     Rst : IN STD_LOGIC; -- reset input
     SFD : IN STD_LOGIC;
     SRD : IN STD_LOGIC;
@@ -217,7 +217,7 @@ BEGIN
         display <= "101";
       WHEN Six =>
         fdoor <= '0';
-        rdoor <= '0';
+        rdoor <= '1';
         winbuzz <= '0';
         alarmbuzz <= '0';
         heater <= '0';
