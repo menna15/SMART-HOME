@@ -1,15 +1,10 @@
 # Smart Home
 Delivered as a project for the VLSI course
 
-## combined56
-`` Movable cell area = 72 squm = 72 * 10^(6) sqmm `` 
-`` Total power = 183.4399 uW ``
-`` Worst Case Slack = -10 ps ``
-`` Clock Period = 1500 ps ``
-`` Overall = 36000489.69 ``
-## combined56 If Else
-`` Movable cell area = 84 squm = 84 * 10^(6) sqmm `` 
-`` Total power = 221.53892 uW ``
-`` Worst Case Slack = -7 ps ``
-`` Clock Period = 1500 ps ``
-`` Overall = 42000496.41 ``
+## combined56 - best
+`` Movable cell area = 60 squm = 60 * 10^(6) sqmm `` 
+`` Total power =  87.734261 uW ``
+`` Worst Case Slack = 165.2 ps ``
+`` Clock Period = 3000 ps ``
+`` Overall =  ``
+165.2
