@@ -1,11 +1,11 @@
 #
 # Created by 
-#   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Tue Dec 28 19:37:46 2021
+#   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Wed Dec 29 10:39:26 2021
 # (C) Mentor Graphics Corporation
 #
 set_units -time ns -capacitance ff -resistance kohm -power nW -voltage V -current mA
-create_clock -period 1 -waveform {0 0.5} -name vsysclk 
-create_clock -period 1.5 -waveform {0 0.75} -name sysclk [get_ports Clk]
+create_clock -period 2 -waveform {0 1} -name vsysclk 
+create_clock -period 3 -waveform {0 1.5} -name sysclk [get_ports Clk]
 group_path -name I2R -from [list [get_ports {ST[0]}] [get_ports {ST[1]}] [get_ports {ST[2]}] [get_ports {ST[3]}] [get_ports {ST[4]}] [get_ports {ST[5]}] [get_ports {ST[6]}] [get_ports SFA] [get_ports SW] [get_ports SRD] [get_ports SFD] [get_ports Rst] [get_ports Clk]]
 group_path -name I2O -from [list [get_ports {ST[0]}] [get_ports {ST[1]}] [get_ports {ST[2]}] [get_ports {ST[3]}] [get_ports {ST[4]}] [get_ports {ST[5]}] [get_ports {ST[6]}] [get_ports SFA] [get_ports SW] [get_ports SRD] [get_ports SFD] [get_ports Rst] [get_ports Clk]]  -to [list [get_ports {display[0]}] [get_ports {display[1]}] [get_ports {display[2]}] [get_ports cooler] [get_ports heater] [get_ports alarmbuzz] [get_ports winbuzz] [get_ports rdoor] [get_ports fdoor]]
 group_path -name R2O -to [list [get_ports {display[0]}] [get_ports {display[1]}] [get_ports {display[2]}] [get_ports cooler] [get_ports heater] [get_ports alarmbuzz] [get_ports winbuzz] [get_ports rdoor] [get_ports fdoor]]
@@ -44,13 +44,13 @@ set_input_delay 0.7 [get_ports {ST[3]}]
 set_input_delay 0.7 [get_ports {ST[2]}]
 set_input_delay 0.7 [get_ports {ST[1]}]
 set_input_delay 0.7 [get_ports {ST[0]}]
-set_output_delay 0.3 -clock vsysclk [get_ports fdoor]
-set_output_delay 0.3 -clock vsysclk [get_ports rdoor]
-set_output_delay 0.3 -clock vsysclk [get_ports winbuzz]
-set_output_delay 0.3 -clock vsysclk [get_ports alarmbuzz]
-set_output_delay 0.3 -clock vsysclk [get_ports heater]
-set_output_delay 0.3 -clock vsysclk [get_ports cooler]
-set_output_delay 0.3 -clock vsysclk [get_ports {display[2]}]
-set_output_delay 0.3 -clock vsysclk [get_ports {display[1]}]
-set_output_delay 0.3 -clock vsysclk [get_ports {display[0]}]
+set_output_delay 0.6 -clock vsysclk [get_ports fdoor]
+set_output_delay 0.6 -clock vsysclk [get_ports rdoor]
+set_output_delay 0.6 -clock vsysclk [get_ports winbuzz]
+set_output_delay 0.6 -clock vsysclk [get_ports alarmbuzz]
+set_output_delay 0.6 -clock vsysclk [get_ports heater]
+set_output_delay 0.6 -clock vsysclk [get_ports cooler]
+set_output_delay 0.6 -clock vsysclk [get_ports {display[2]}]
+set_output_delay 0.6 -clock vsysclk [get_ports {display[1]}]
+set_output_delay 0.6 -clock vsysclk [get_ports {display[0]}]
 set_operating_conditions  -library  [get_libs {NangateOpenCellLibrary}] -max  typical

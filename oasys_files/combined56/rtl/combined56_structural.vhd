@@ -1,8 +1,9 @@
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 -- Design 2 idea : is to keep the output if heater or cooler = 1 untill the tempreture change to the normal range --
-entity combined56_structural is  
+entity combined56_finalVersion is  
     port (
     Clk : in std_logic; 
     Rst : in std_logic; -- reset input
@@ -20,183 +21,97 @@ entity combined56_structural is
     cooler    : out std_logic;
     display   : out std_logic_vector (2 Downto 0) -- 
 );
-end combined56_structural;
+end combined56_finalVersion;
 
-architecture Design_Architecture of combined56_structural is
-    type MOORE_FSM is (Zero, One, Two, Three, Four, Five, six); --Five heater, Six cooler
-    signal current_state, next_state: MOORE_FSM;
-    signal outputs : std_logic_vector(5 downto 0);
-    
+architecture Behavioral of combined56_finalVersion is
+signal state, next_state : integer range 0 to 6 := 0;
+signal temp : integer range 0 to 16 := 0;
+signal inputs : std_logic_vector(5 downto 0);
+signal TH ,TC    : std_logic;
+
+begin
+    TH     <= '1' when (ST<"0110010") else '0';
+    TC     <= '1' when (ST>"1000110") else '0';
+    inputs <=TC&TH&SW&SFA&SRD&SFD when state = 0 or state=6 else
+        SFD&TC&TH&SW&SFA&SRD  when state = 1 else
+        SRD& SFD&TH&TH&SW&SFA when state = 2 else
+        SFA&SRD& SFD&TC&TH&SW when state = 3 else
+        SW&SFA&SRD& SFD&TC&TH when state = 4 else
+        TH&SW&SFA&SRD& SFD&TC;
+
+    -- Block1 unsynchronous reset--
+    process(Clk)
     begin
-    -- Sequential memory of the VHDL MOORE FSM Sequence Detector
-    process(Clk,Rst)
-    begin
-     IF (rising_edge(Clk)) THEN
-	IF (Rst = '1') THEN
-      		current_state <= Zero;
-	ELSE
-      		current_state <= next_state;
-	END IF;
-    END IF;
-    END PROCESS;
-    -- Next state logic of the VHDL MOORE FSM Sequence Detector
-    -- Combinational logic
-    process(current_state,SFD,SRD,SFA,SW,ST)
-    begin
-     case(current_state) is
+        IF (rising_edge(Clk)) THEN
+        IF (Rst = '1') THEN
+                  state <= 0;
+        ELSE
+                  state <= next_state;
+        END IF;
+        END IF;
+      END PROCESS;
     
-     when Zero =>
-      if(SFD='1') then
-       next_state <= One;
-      elsif(SRD='1') then
-       next_state <= Two;
-      elsif(SFA='1') then
-       next_state <= Three;
-      elsif(SW='1') then
-       next_state <= Four;
-      elsif(ST<"0110010") then
-       next_state <= Five;
-      elsif(ST>"1000110") then
-       next_state <= Six;
-      else
-       next_state<=Zero;
-      end if;
-    
-     when One =>
-      if(SRD='1') then
-       next_state <= Two;
-      elsif(SFA='1') then
-       next_state <= Three;
-      elsif(SW='1') then
-       next_state <= Four;
-      elsif(ST<"0110010") then
-       next_state <= Five;
-      elsif(ST>"1000110") then
-       next_state <= Six;
-      elsif(SFD='1') then
-       next_state <= One;
-      else
-       next_state<=Zero;
-      end if;
-        
-     when Two => 
-      if(SFA='1') then
-       next_state <= Three;
-      elsif(SW='1') then
-       next_state <= Four;
-      elsif(ST<"0110010") then
-       next_state <= Five;
-      elsif(ST>"1000110") then
-       next_state <= Six;
-      elsif(SFD='1') then
-       next_state <= One;
-      elsif(SRD='1') then
-       next_state <= Two;
-      else
-       next_state<=Zero;
-      end if;
-     
-     when Three =>
-      if(SW='1') then
-       next_state <= Four;
-      elsif(ST<"0110010") then
-       next_state <= Five;
-      elsif(ST>"1000110") then
-       next_state <= Six;
-      elsif(SFD='1') then
-       next_state <= One;
-      elsif(SRD='1') then
-       next_state <= Two;
-      elsif(SFA='1') then
-       next_state <= Three;
-      else
-       next_state<=Zero;
-      end if;
-      
-     when Four =>
-      if(ST<"0110010") then
-       next_state <= Five;
-      elsif(ST>"1000110") then
-       next_state <= Six;
-      elsif(SFD='1') then
-       next_state <= One;
-      elsif(SRD='1') then
-       next_state <= Two;
-      elsif(SFA='1') then
-       next_state <= Three;
-      elsif(SW='1') then
-       next_state <= Four;
-      else
-       next_state<=Zero;
-      end if;
-    
-    when Five =>
-      if(SFD='1') then
-       next_state <= One;
-      elsif(SRD='1') then
-       next_state <= Two;
-      elsif(SFA='1') then
-       next_state <= Three;
-      elsif(SW='1') then
-       next_state <= Four;
-      elsif(ST<"0110010") then
-       next_state <= Five;
-      elsif(ST>"1000110") then
-       next_state <= Six;
-     else
-       next_state<=Zero;
-      end if;
-    
-    when Six =>
-      if(SFD='1') then
-       next_state <= One;
-      elsif(SRD='1') then
-       next_state <= Two;
-      elsif(SFA='1') then
-       next_state <= Three;
-      elsif(SW='1') then
-       next_state <= Four;
-      elsif(ST<"0110010") then
-       next_state <= Five;
-      elsif(ST>"1000110") then
-       next_state <= Six;
-     else
-       next_state<=Zero;
-      end if;
-    
-     end case;
-    end process;
-    -- Block3 of FSM for selecting the output depending on the current state --
-    process(current_state)
-    begin 
-        case current_state is
-            when Zero =>
-                outputs <= (others => '0');
-                display  <= "000";
-            when One =>
-                outputs <= (0 => '1',others => '0');
-                display  <= "001";
-            when Two => 
-                outputs <= (1 => '1',others => '0');
-                display  <= "010";
-            when Three => 
-                outputs <= (2 => '1',others => '0');
-                display  <= "011";
-            when Four => 
-                outputs <= (3 => '1',others => '0');
-                display  <= "100";
-            when Five => 
-                outputs <= (4 => '1',others => '0');
-                display  <= "101";
-            when Six => 
-                outputs <= (5 => '1',others => '0');
-                display  <= "110";
-        end case;
-        fdoor     <= outputs(0);
-        rdoor     <= outputs(1);
-        alarmbuzz <= outputs(2);
-        winbuzz   <= outputs(3);
-        heater    <= outputs(4);
-        cooler    <= outputs(5);
-    end process;
+    -- Block2 of FSM for selecting the next state depending on current state & input --
+
+        temp <= state + 1 when (inputs(0)='1') else
+            state + 2 when (inputs(1)='1') else
+            state + 3 when (inputs(2)='1') else
+            state + 4 when (inputs(3)='1') else
+            state + 5 when (inputs(4)='1') else
+            state + 6 when (inputs(5)='1') else
+            state ;
+        next_state <= temp when( temp <= 6) else
+            temp + 1 - 6 ;
+
+    -----------------------------------------
+    PROCESS (state)
+    VARIABLE fdoor_gnd : STD_LOGIC := '0';
+    VARIABLE rdoor_gnd : STD_LOGIC := '0';
+    VARIABLE winbuzz_gnd : STD_LOGIC := '0';
+    VARIABLE alarmbuzz_gnd : STD_LOGIC := '0';
+    VARIABLE heater_gnd : STD_LOGIC := '0';
+    VARIABLE cooler_gnd : STD_LOGIC := '0';
+  BEGIN
+    fdoor_gnd := '0';
+    rdoor_gnd := '0';
+    winbuzz_gnd := '0';
+    alarmbuzz_gnd := '0';
+    heater_gnd := '0';
+    cooler_gnd := '0';
+    fdoor <= fdoor_gnd;
+    rdoor <= rdoor_gnd;
+    winbuzz <= winbuzz_gnd;
+    alarmbuzz <= alarmbuzz_gnd;
+    heater <= heater_gnd;
+    cooler <= cooler_gnd;
+    CASE state IS
+      WHEN 1 =>
+        fdoor <= '1';
+        fdoor_gnd := 'Z';
+        display <= "001";
+      WHEN 2 =>
+        rdoor <= '1';
+        rdoor_gnd := 'Z';
+        display <= "010";
+      WHEN 3 =>
+        alarmbuzz_gnd := 'Z';
+        alarmbuzz <= '1';
+        display <= "011";
+      WHEN 4 =>
+        winbuzz <= '1';
+        winbuzz_gnd := 'Z';
+        display <= "100";
+      WHEN 5 =>
+        heater_gnd := 'Z';
+        heater <= '1';
+        display <= "101";
+      WHEN 6 =>
+        cooler_gnd := 'Z';
+        cooler <= '1';
+        display <= "110";
+      WHEN OTHERS =>
+        display <= "000";
+    END CASE;
+  END PROCESS;
+
 end architecture;

@@ -5,79 +5,74 @@ Startpoint: current_state_reg[2]/Q
 Endpoint: current_state_reg[1]/D
     (Clocked by sysclk R)
 Path Group: default
-Data required time: 1458.9
-    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 41.1)
-Data arrival time: 438.3
-Slack: 1020.6
-Logic depth: 8
+Data required time: 2961.4
+    (Clock shift: 3000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 38.6)
+Data arrival time: 386.3
+Slack: 2575.1
+Logic depth: 5
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                      Arrival               Arc      Net               Net    Total   fan-                                   
 Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
                                                         (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-Clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0      3    34,    0                       
+Clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0      3     0,   34                       
 current_state_reg[2]/CK->Q
-                         DFF_X2#*                rr    144.8    144.8    144.8      0.0      0.0      3.7     39.6      7    35,   35  /PD_TOP        (1.10)
-rt_shieldBuf__1/A->Z     BUF_X1#*                rr    236.3     91.5     91.4      0.1     15.3      1.8     35.7      3    35,   35  /PD_TOP        (1.10)
-i_0_6_47/A->ZN           INV_X8                  rf    244.8      8.5      8.5      0.0     15.3      1.3      9.6      2    35,   35  /PD_TOP        (1.10)
-i_0_6_25/A1->ZN          NOR2_X4                 fr    272.4     27.6     27.6      0.0      4.1      1.3      9.3      2    35,   35  /PD_TOP        (1.10)
-i_0_6_24/A2->ZN          NAND2_X4                rf    297.3     24.9     24.9      0.0     21.1      2.8     18.9      4    35,   35  /PD_TOP        (1.10)
-i_0_6_19/A->ZN           OAI21_X4*               fr    336.0     38.7     38.6      0.1     12.9      1.4     30.7      2    35,   35  /PD_TOP        (1.10)
-i_0_6_17/A3->ZN          NOR3_X4                 rf    348.6     12.6     12.6      0.0     15.3      0.8      3.4      1    35,   35  /PD_TOP        (1.10)
-i_0_6_13/A->ZN           AOI221_X2               fr    428.8     80.2     80.2      0.0      6.4      0.8      5.0      1    35,   35  /PD_TOP        (1.10)
-i_0_6_11/A1->ZN          NOR3_X2                 rf    438.3      9.5      9.5      0.0     50.7      0.7      1.9      1    35,   35  /PD_TOP        (1.10)
-current_state_reg[1]/D   DFF_X2#                  f    438.3      0.0               0.0      5.8                             35,   35  /PD_TOP        (1.10)
+                         DFF_X1*                 rr    155.3    155.3    155.3      0.0      0.0      2.0     49.8      4    35,   35  /PD_TOP        (1.10)
+i_0_0_33/A2->ZN          NAND2_X4                rf    178.6     23.3     23.3      0.0     15.3      2.6     18.8      4    35,   35  /PD_TOP        (1.10)
+i_0_0_19/B->ZN           XNOR2_X2                ff    223.7     45.1     45.1      0.0     12.8      1.5      8.1      2    35,   35  /PD_TOP        (1.10)
+i_0_0_18/A->ZN           AOI221_X2               fr    301.1     77.4     77.4      0.0     14.6      0.9      3.5      1    35,   35  /PD_TOP        (1.10)
+i_0_0_14/A->ZN           AOI221_X2               rf    323.1     22.0     22.0      0.0     45.4      0.9      3.4      1    35,   35  /PD_TOP        (1.10)
+i_0_0_13/B->ZN           AOI211_X2               fr    386.3     63.2     63.2      0.0     15.2      0.8      1.9      1    35,   35  /PD_TOP        (1.10)
+current_state_reg[1]/D   DFF_X1                   r    386.3      0.0               0.0     34.9                             35,   35  /PD_TOP        (1.10)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 Report for group I2R
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-Startpoint: ST[1]
+Startpoint: ST[2]
     (Clocked by rtDefaultClock R)
 Endpoint: current_state_reg[1]/D
     (Clocked by sysclk R)
 Path Group: I2R
-Data required time: 1458.9
-    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 41.1)
-Data arrival time: 1013.8
-Slack: 445.1
-Logic depth: 8
+Data required time: 2960.0
+    (Clock shift: 3000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 40.0)
+Data arrival time: 990.8
+Slack: 1969.2
+Logic depth: 6
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                      Arrival               Arc      Net               Net    Total   fan-                                   
 Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
                                                         (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-ST[1]                    {set_input_delay}        f    700.0    700.0    700.0                        5.2     11.1      2    35,    0                       
-i_0_6_44/A2->ZN          NOR3_X4                 fr    778.2     78.2     77.8      0.4    100.0      0.7      4.8      1    35,   35  /PD_TOP        (1.10)
-i_0_6_43/A2->ZN          NOR2_X4                 rf    791.8     13.6     13.6      0.0     28.5      0.7      4.9      1    35,   35  /PD_TOP        (1.10)
-i_0_6_42/B2->ZN          AOI21_X4                fr    846.5     54.7     54.7      0.0      5.7      3.4     23.6      5    35,   35  /PD_TOP        (1.10)
-i_0_6_41/A2->ZN          NOR2_X4                 rf    863.5     17.0     16.9      0.1     44.4      1.4      7.8      2    35,   35  /PD_TOP        (1.10)
-i_0_6_20/A2->ZN          NOR3_X4                 fr    910.0     46.5     46.5      0.0      6.4      0.7      4.7      1    35,   35  /PD_TOP        (1.10)
-i_0_6_17/A2->ZN          NOR3_X4                 rf    924.1     14.1     14.1      0.0     28.2      0.8      3.4      1    35,   35  /PD_TOP        (1.10)
-i_0_6_13/A->ZN           AOI221_X2               fr   1004.3     80.2     80.2      0.0      6.4      0.8      5.0      1    35,   35  /PD_TOP        (1.10)
-i_0_6_11/A1->ZN          NOR3_X2                 rf   1013.8      9.5      9.5      0.0     50.7      0.7      1.9      1    35,   35  /PD_TOP        (1.10)
-current_state_reg[1]/D   DFF_X2#                  f   1013.8      0.0               0.0      5.8                             35,   35  /PD_TOP        (1.10)
+ST[2]                    {set_input_delay}        f    700.0    700.0    700.0                        5.2     11.3      2    70,   35                       
+i_0_0_36/A2->ZN          OR3_X4                  ff    801.5    101.5    101.1      0.4    100.0      0.7      4.8      1    35,   35  /PD_TOP        (1.10)
+i_0_0_34/B1->ZN          AOI21_X4                fr    845.1     43.6     43.6      0.0     12.0      2.8     16.9      4    35,   35  /PD_TOP        (1.10)
+i_0_0_23/A2->ZN          OR2_X4                  rr    878.1     33.0     32.9      0.1     36.5      1.6      8.0      2    35,   35  /PD_TOP        (1.10)
+i_0_0_18/C1->ZN          AOI221_X2               rf    893.6     15.5     15.5      0.0      8.7      0.9      3.5      1    35,   35  /PD_TOP        (1.10)
+i_0_0_14/A->ZN           AOI221_X2               fr    970.9     77.3     77.3      0.0     15.3      0.9      3.4      1    35,   35  /PD_TOP        (1.10)
+i_0_0_13/B->ZN           AOI211_X2               rf    990.8     19.9     19.9      0.0     45.0      0.8      1.9      1    35,   35  /PD_TOP        (1.10)
+current_state_reg[1]/D   DFF_X1                   f    990.8      0.0               0.0      8.0                             35,   35  /PD_TOP        (1.10)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 Report for group I2O
 Report for group R2O
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 Startpoint: current_state_reg[0]/Q
     (Clocked by sysclk R)
-Endpoint: alarmbuzz
+Endpoint: heater
     (Clocked by vsysclk R)
 Path Group: R2O
-Data required time: 200.0
-    (Clock shift: 500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 300.0)
-Data arrival time: 210.0
-Slack: -10.0
+Data required time: 400.0
+    (Clock shift: 1000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 600.0)
+Data arrival time: 234.8
+Slack: 165.2
 Logic depth: 2
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                      Arrival               Arc      Net               Net    Total   fan-                                   
 Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
                                                         (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-Clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0      3    34,    0                       
+Clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0      3     0,   34                       
 current_state_reg[0]/CK->Q
-                         DFF_X2#*                rr    159.1    159.1    159.1      0.0      0.0      6.3     82.7     11    35,   35  /PD_TOP        (1.10)
-i_0_3_0/A1->ZN           NAND2_X4                rf    173.9     14.8     14.6      0.2     15.3      0.6      4.8      1    35,   35  /PD_TOP        (1.10)
-i_0_3_1/A1->ZN           NOR2_X4                 fr    209.6     35.7     35.7      0.0      7.2      4.6     14.6      1    35,   35  /PD_TOP        (1.10)
-alarmbuzz                                         r    210.0      0.4               0.4     27.4                             35,   71                       
+                         DFF_X1*                 rr    158.8    158.8    158.8      0.0      0.0      3.4     59.9      6    35,   35  /PD_TOP        (1.10)
+i_0_0_41/A->ZN           INV_X8                  rf    168.7      9.9      9.8      0.1     15.3      2.0     13.7      3    35,   35  /PD_TOP        (1.10)
+i_0_0_6/A2->ZN           NOR3_X4                 fr    234.4     65.7     65.7      0.0      4.5      4.6     14.6      1    35,   35  /PD_TOP        (1.10)
+heater                                            r    234.8      0.4               0.4     46.1                             70,   35                       
 ------------------------------------------------------------------------------------------------------------------------------------------------------------

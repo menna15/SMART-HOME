@@ -1,9 +1,9 @@
 /*
  * Created by 
-   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Tue Dec 28 19:37:46 2021
+   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Wed Dec 29 10:39:26 2021
  * (C) Mentor Graphics Corporation
  */
-/* CheckSum: 4196556358 */
+/* CheckSum: 1784704788 */
 
 module Combined56(Clk, Rst, SFD, SRD, SW, SFA, ST, fdoor, rdoor, winbuzz, 
       alarmbuzz, heater, cooler, display);
@@ -22,135 +22,103 @@ module Combined56(Clk, Rst, SFD, SRD, SW, SFA, ST, fdoor, rdoor, winbuzz,
    output cooler;
    output [2:0]display;
 
-   wire n_0_1_0;
-   wire n_0_2_0;
-   wire n_0_3_0;
-   wire n_0_4_0;
-   wire n_0_4_1;
-   wire n_0_5_0;
-   wire n_0_5_1;
    wire n_0_0;
-   wire n_0_6_0;
-   wire n_0_6_1;
-   wire n_0_6_2;
-   wire n_0_6_3;
-   wire n_0_6_4;
-   wire n_0_6_5;
-   wire n_0_6_6;
-   wire n_0_6_7;
-   wire n_0_6_8;
-   wire n_0_6_9;
+   wire n_0_0_0;
+   wire n_0_0_1;
+   wire n_0_0_2;
+   wire n_0_0_3;
+   wire n_0_0_4;
+   wire n_0_0_5;
+   wire n_0_0_6;
+   wire n_0_0_7;
+   wire n_0_0_8;
    wire n_0_1;
-   wire n_0_6_10;
-   wire n_0_6_11;
-   wire n_0_6_12;
-   wire n_0_6_13;
-   wire n_0_6_14;
-   wire n_0_6_15;
-   wire n_0_6_16;
-   wire n_0_6_17;
+   wire n_0_0_9;
+   wire n_0_0_10;
+   wire n_0_0_11;
+   wire n_0_0_12;
+   wire n_0_0_13;
    wire n_0_2;
-   wire n_0_6_18;
-   wire n_0_6_19;
-   wire n_0_6_20;
-   wire n_0_6_21;
-   wire n_0_6_22;
-   wire n_0_6_23;
-   wire n_0_6_24;
-   wire n_0_6_25;
-   wire n_0_6_26;
-   wire n_0_6_27;
-   wire n_0_6_28;
-   wire n_0_6_29;
-   wire n_0_6_30;
-   wire n_0_6_31;
-   wire n_0_6_32;
-   wire n_0_6_33;
-   wire n_0_6_34;
-   wire n_0_6_35;
-   wire n_0_6_36;
-   wire n_0_6_37;
-   wire n_0_6_38;
-   wire n_0_6_39;
-   wire n_0_6_40;
-   wire n_0_6_41;
-   wire n_0_6_42;
-   wire n_0_6_43;
-   wire n_0_6_44;
-   wire n_0_6_45;
-   wire n_0_6_46;
-   wire n_0_3;
+   wire n_0_0_14;
+   wire n_0_0_15;
+   wire n_0_0_16;
+   wire n_0_0_17;
+   wire n_0_0_18;
+   wire n_0_0_19;
+   wire n_0_0_20;
+   wire n_0_0_21;
+   wire n_0_0_22;
+   wire n_0_0_23;
+   wire n_0_0_24;
+   wire n_0_0_25;
+   wire n_0_0_26;
+   wire n_0_0_27;
+   wire n_0_0_28;
+   wire n_0_0_29;
+   wire n_0_0_30;
+   wire n_0_0_31;
+   wire n_0_0_32;
+   wire n_0_0_33;
+   wire n_0_0_34;
+   wire n_0_0_35;
+   wire n_0_0_36;
+   wire n_0_0_37;
 
-   DFF_X2 \current_state_reg[1]  (.D(n_0_1), .CK(Clk), .Q(display[1]), .QN());
-   DFF_X2 \current_state_reg[2]  (.D(n_0_2), .CK(Clk), .Q(display[2]), .QN());
-   DFF_X2 \current_state_reg[0]  (.D(n_0_0), .CK(Clk), .Q(display[0]), .QN());
-   NAND2_X1 i_0_1_0 (.A1(display[1]), .A2(display[2]), .ZN(n_0_1_0));
-   NOR2_X1 i_0_1_1 (.A1(n_0_1_0), .A2(display[0]), .ZN(cooler));
-   NAND2_X1 i_0_2_0 (.A1(display[0]), .A2(display[2]), .ZN(n_0_2_0));
-   NOR2_X1 i_0_2_1 (.A1(n_0_2_0), .A2(display[1]), .ZN(heater));
-   NAND2_X1 i_0_3_0 (.A1(display[0]), .A2(display[1]), .ZN(n_0_3_0));
-   NOR2_X1 i_0_3_1 (.A1(n_0_3_0), .A2(display[2]), .ZN(alarmbuzz));
-   NOR2_X1 i_0_4_0 (.A1(display[0]), .A2(display[1]), .ZN(n_0_4_0));
-   NAND2_X1 i_0_4_1 (.A1(n_0_4_0), .A2(display[2]), .ZN(n_0_4_1));
-   INV_X1 i_0_4_2 (.A(n_0_4_1), .ZN(winbuzz));
-   INV_X1 i_0_5_0 (.A(n_0_5_0), .ZN(fdoor));
-   NAND2_X1 i_0_5_1 (.A1(display[0]), .A2(n_0_5_1), .ZN(n_0_5_0));
-   NOR2_X1 i_0_5_2 (.A1(display[2]), .A2(display[1]), .ZN(n_0_5_1));
-   NOR2_X1 i_0_6_0 (.A1(Rst), .A2(n_0_6_0), .ZN(n_0_0));
-   AOI222_X1 i_0_6_1 (.A1(n_0_6_15), .A2(n_0_6_6), .B1(n_0_6_13), .B2(n_0_6_4), 
-      .C1(n_0_6_2), .C2(n_0_6_1), .ZN(n_0_6_0));
-   OAI21_X1 i_0_6_2 (.A(n_0_6_45), .B1(SW), .B2(n_0_6_12), .ZN(n_0_6_1));
-   OAI22_X1 i_0_6_3 (.A1(display[0]), .A2(n_0_6_35), .B1(SRD), .B2(n_0_6_3), 
-      .ZN(n_0_6_2));
-   NAND2_X1 i_0_6_4 (.A1(n_0_6_42), .A2(n_0_6_31), .ZN(n_0_6_3));
-   AOI21_X1 i_0_6_5 (.A(n_0_6_5), .B1(n_0_6_41), .B2(n_0_6_20), .ZN(n_0_6_4));
-   AOI21_X1 i_0_6_6 (.A(n_0_6_38), .B1(n_0_6_25), .B2(n_0_6_9), .ZN(n_0_6_5));
-   NOR2_X1 i_0_6_7 (.A1(n_0_6_31), .A2(n_0_6_7), .ZN(n_0_6_6));
-   AOI21_X1 i_0_6_8 (.A(n_0_6_9), .B1(n_0_6_38), .B2(n_0_6_8), .ZN(n_0_6_7));
-   NOR2_X1 i_0_6_9 (.A1(SW), .A2(SRD), .ZN(n_0_6_8));
-   OAI21_X1 i_0_6_10 (.A(n_0_6_44), .B1(n_0_6_45), .B2(SRD), .ZN(n_0_6_9));
-   NOR3_X1 i_0_6_11 (.A1(n_0_6_11), .A2(n_0_6_10), .A3(Rst), .ZN(n_0_1));
-   NOR3_X1 i_0_6_12 (.A1(SRD), .A2(n_0_6_24), .A3(SFA), .ZN(n_0_6_10));
-   AOI221_X1 i_0_6_13 (.A(n_0_6_14), .B1(n_0_6_36), .B2(n_0_6_34), .C1(n_0_6_13), 
-      .C2(n_0_6_12), .ZN(n_0_6_11));
-   AOI21_X1 i_0_6_14 (.A(n_0_6_38), .B1(SFD), .B2(n_0_6_25), .ZN(n_0_6_12));
-   OAI21_X1 i_0_6_15 (.A(n_0_6_20), .B1(SW), .B2(n_0_6_35), .ZN(n_0_6_13));
-   NOR2_X1 i_0_6_16 (.A1(n_0_6_42), .A2(display[0]), .ZN(rdoor));
-   NOR3_X1 i_0_6_17 (.A1(n_0_6_30), .A2(n_0_6_17), .A3(n_0_6_16), .ZN(n_0_6_14));
-   INV_X1 i_0_6_18 (.A(n_0_6_16), .ZN(n_0_6_15));
-   OAI21_X1 i_0_6_19 (.A(n_0_6_20), .B1(n_0_6_42), .B2(n_0_6_21), .ZN(n_0_6_16));
-   NOR3_X1 i_0_6_20 (.A1(SRD), .A2(n_0_6_37), .A3(SFA), .ZN(n_0_6_17));
-   AOI211_X1 i_0_6_21 (.A(n_0_6_18), .B(Rst), .C1(n_0_6_37), .C2(n_0_6_23), 
-      .ZN(n_0_2));
-   INV_X1 i_0_6_22 (.A(n_0_6_19), .ZN(n_0_6_18));
-   OAI21_X1 i_0_6_23 (.A(n_0_6_28), .B1(n_0_6_22), .B2(n_0_6_20), .ZN(n_0_6_19));
-   NAND2_X1 i_0_6_24 (.A1(n_0_6_42), .A2(n_0_6_21), .ZN(n_0_6_20));
-   NOR2_X1 i_0_6_25 (.A1(n_0_6_43), .A2(display[0]), .ZN(n_0_6_21));
-   NOR2_X1 i_0_6_26 (.A1(n_0_6_38), .A2(n_0_6_24), .ZN(n_0_6_22));
-   NOR2_X1 i_0_6_27 (.A1(n_0_6_28), .A2(n_0_6_24), .ZN(n_0_6_23));
-   INV_X1 i_0_6_28 (.A(n_0_6_25), .ZN(n_0_6_24));
-   OAI21_X1 i_0_6_29 (.A(ST[6]), .B1(n_0_6_27), .B2(n_0_6_26), .ZN(n_0_6_25));
-   OR3_X1 i_0_6_30 (.A1(ST[4]), .A2(ST[3]), .A3(ST[5]), .ZN(n_0_6_26));
-   AND3_X1 i_0_6_31 (.A1(ST[1]), .A2(ST[0]), .A3(ST[2]), .ZN(n_0_6_27));
-   AOI22_X1 i_0_6_32 (.A1(n_0_6_36), .A2(n_0_6_33), .B1(n_0_6_45), .B2(n_0_6_29), 
-      .ZN(n_0_6_28));
-   NOR3_X1 i_0_6_33 (.A1(n_0_6_32), .A2(n_0_6_30), .A3(SRD), .ZN(n_0_6_29));
-   NOR2_X1 i_0_6_34 (.A1(n_0_6_44), .A2(n_0_6_31), .ZN(n_0_6_30));
-   NOR2_X1 i_0_6_35 (.A1(n_0_3), .A2(n_0_6_41), .ZN(n_0_6_31));
-   NOR3_X1 i_0_6_36 (.A1(n_0_6_43), .A2(n_0_6_41), .A3(n_0_6_42), .ZN(n_0_6_32));
-   INV_X1 i_0_6_37 (.A(n_0_6_34), .ZN(n_0_6_33));
-   NOR2_X1 i_0_6_38 (.A1(n_0_6_45), .A2(display[0]), .ZN(n_0_6_34));
-   INV_X1 i_0_6_39 (.A(n_0_6_36), .ZN(n_0_6_35));
-   NOR2_X1 i_0_6_40 (.A1(n_0_3), .A2(n_0_6_42), .ZN(n_0_6_36));
-   NOR2_X1 i_0_6_41 (.A1(SW), .A2(n_0_6_38), .ZN(n_0_6_37));
-   AOI21_X1 i_0_6_42 (.A(ST[6]), .B1(ST[5]), .B2(n_0_6_39), .ZN(n_0_6_38));
-   NOR2_X1 i_0_6_43 (.A1(n_0_6_46), .A2(n_0_6_40), .ZN(n_0_6_39));
-   NOR3_X1 i_0_6_44 (.A1(ST[2]), .A2(ST[1]), .A3(ST[3]), .ZN(n_0_6_40));
-   INV_X1 i_0_6_45 (.A(display[0]), .ZN(n_0_6_41));
-   INV_X1 i_0_6_46 (.A(display[1]), .ZN(n_0_6_42));
-   INV_X1 i_0_6_47 (.A(n_0_3), .ZN(n_0_6_43));
-   INV_X1 i_0_6_48 (.A(SFD), .ZN(n_0_6_44));
-   INV_X1 i_0_6_49 (.A(SFA), .ZN(n_0_6_45));
-   INV_X1 i_0_6_50 (.A(ST[4]), .ZN(n_0_6_46));
-   BUF_X1 rt_shieldBuf__1 (.A(display[2]), .Z(n_0_3));
+   DFF_X1 \current_state_reg[2]  (.D(n_0_2), .CK(Clk), .Q(display[2]), .QN());
+   DFF_X1 \current_state_reg[1]  (.D(n_0_1), .CK(Clk), .Q(display[1]), .QN());
+   DFF_X1 \current_state_reg[0]  (.D(n_0_0), .CK(Clk), .Q(display[0]), .QN());
+   AOI21_X1 i_0_0_0 (.A(Rst), .B1(n_0_0_6), .B2(n_0_0_0), .ZN(n_0_0));
+   OAI21_X1 i_0_0_1 (.A(n_0_0_1), .B1(n_0_0_5), .B2(n_0_0_25), .ZN(n_0_0_0));
+   OAI21_X1 i_0_0_2 (.A(n_0_0_2), .B1(n_0_0_3), .B2(n_0_0_13), .ZN(n_0_0_1));
+   OAI211_X1 i_0_0_3 (.A(n_0_0_37), .B(n_0_0_11), .C1(winbuzz), .C2(display[0]), 
+      .ZN(n_0_0_2));
+   NOR2_X1 i_0_0_4 (.A1(n_0_0_33), .A2(n_0_0_22), .ZN(alarmbuzz));
+   OAI21_X1 i_0_0_5 (.A(n_0_0_22), .B1(n_0_0_5), .B2(n_0_0_4), .ZN(n_0_0_3));
+   NOR3_X1 i_0_0_6 (.A1(n_0_0_34), .A2(n_0_0_32), .A3(display[1]), .ZN(heater));
+   NOR2_X1 i_0_0_7 (.A1(SW), .A2(SRD), .ZN(n_0_0_4));
+   OAI21_X1 i_0_0_8 (.A(n_0_0_35), .B1(n_0_0_36), .B2(SRD), .ZN(n_0_0_5));
+   OAI21_X1 i_0_0_9 (.A(n_0_0_8), .B1(n_0_0_7), .B2(rdoor), .ZN(n_0_0_6));
+   NOR3_X1 i_0_0_10 (.A1(n_0_0_22), .A2(display[1]), .A3(SRD), .ZN(n_0_0_7));
+   NOR2_X1 i_0_0_11 (.A1(n_0_0_22), .A2(display[1]), .ZN(fdoor));
+   OAI21_X1 i_0_0_12 (.A(n_0_0_36), .B1(n_0_0_10), .B2(SW), .ZN(n_0_0_8));
+   AOI211_X1 i_0_0_13 (.A(Rst), .B(n_0_0_9), .C1(n_0_0_21), .C2(n_0_0_37), 
+      .ZN(n_0_1));
+   AOI221_X1 i_0_0_14 (.A(n_0_0_12), .B1(n_0_0_11), .B2(n_0_0_10), .C1(rdoor), 
+      .C2(SFA), .ZN(n_0_0_9));
+   NOR2_X1 i_0_0_15 (.A1(n_0_0_17), .A2(display[0]), .ZN(rdoor));
+   AOI21_X1 i_0_0_16 (.A(n_0_0_25), .B1(n_0_0_37), .B2(SFD), .ZN(n_0_0_10));
+   OAI22_X1 i_0_0_17 (.A1(display[1]), .A2(n_0_0_24), .B1(n_0_0_17), .B2(SW), 
+      .ZN(n_0_0_11));
+   AOI221_X1 i_0_0_18 (.A(n_0_0_13), .B1(SFD), .B2(n_0_0_22), .C1(n_0_0_15), 
+      .C2(n_0_0_21), .ZN(n_0_0_12));
+   XNOR2_X1 i_0_0_19 (.A(display[1]), .B(n_0_0_24), .ZN(n_0_0_13));
+   NOR2_X1 i_0_0_20 (.A1(n_0_0_33), .A2(n_0_0_24), .ZN(cooler));
+   AOI21_X1 i_0_0_21 (.A(Rst), .B1(n_0_0_23), .B2(n_0_0_14), .ZN(n_0_2));
+   OAI22_X1 i_0_0_22 (.A1(n_0_0_15), .A2(n_0_0_28), .B1(n_0_0_18), .B2(n_0_0_16), 
+      .ZN(n_0_0_14));
+   OR2_X1 i_0_0_23 (.A1(SW), .A2(n_0_0_25), .ZN(n_0_0_15));
+   AOI21_X1 i_0_0_24 (.A(n_0_0_17), .B1(n_0_0_32), .B2(SFA), .ZN(n_0_0_16));
+   NAND2_X1 i_0_0_25 (.A1(n_0_0_34), .A2(display[1]), .ZN(n_0_0_17));
+   AOI21_X1 i_0_0_26 (.A(n_0_0_19), .B1(n_0_0_22), .B2(SFD), .ZN(n_0_0_18));
+   NAND2_X1 i_0_0_27 (.A1(n_0_0_20), .A2(n_0_0_21), .ZN(n_0_0_19));
+   NAND3_X1 i_0_0_28 (.A1(display[2]), .A2(display[1]), .A3(display[0]), 
+      .ZN(n_0_0_20));
+   NOR2_X1 i_0_0_29 (.A1(SFA), .A2(SRD), .ZN(n_0_0_21));
+   NAND2_X1 i_0_0_30 (.A1(n_0_0_34), .A2(display[0]), .ZN(n_0_0_22));
+   OAI21_X1 i_0_0_31 (.A(winbuzz), .B1(n_0_0_25), .B2(n_0_0_28), .ZN(n_0_0_23));
+   NOR2_X1 i_0_0_32 (.A1(n_0_0_24), .A2(display[1]), .ZN(winbuzz));
+   NAND2_X1 i_0_0_33 (.A1(n_0_0_32), .A2(display[2]), .ZN(n_0_0_24));
+   AOI21_X1 i_0_0_34 (.A(ST[6]), .B1(n_0_0_27), .B2(n_0_0_26), .ZN(n_0_0_25));
+   AND2_X1 i_0_0_35 (.A1(ST[5]), .A2(ST[4]), .ZN(n_0_0_26));
+   OR3_X1 i_0_0_36 (.A1(ST[3]), .A2(ST[2]), .A3(ST[1]), .ZN(n_0_0_27));
+   AND2_X1 i_0_0_37 (.A1(n_0_0_29), .A2(ST[6]), .ZN(n_0_0_28));
+   NAND2_X1 i_0_0_38 (.A1(n_0_0_30), .A2(n_0_0_31), .ZN(n_0_0_29));
+   NOR3_X1 i_0_0_39 (.A1(ST[5]), .A2(ST[4]), .A3(ST[3]), .ZN(n_0_0_30));
+   NAND3_X1 i_0_0_40 (.A1(ST[2]), .A2(ST[1]), .A3(ST[0]), .ZN(n_0_0_31));
+   INV_X1 i_0_0_41 (.A(display[0]), .ZN(n_0_0_32));
+   INV_X1 i_0_0_42 (.A(display[1]), .ZN(n_0_0_33));
+   INV_X1 i_0_0_43 (.A(display[2]), .ZN(n_0_0_34));
+   INV_X1 i_0_0_44 (.A(SFD), .ZN(n_0_0_35));
+   INV_X1 i_0_0_45 (.A(SFA), .ZN(n_0_0_36));
+   INV_X1 i_0_0_46 (.A(n_0_0_28), .ZN(n_0_0_37));
 endmodule
