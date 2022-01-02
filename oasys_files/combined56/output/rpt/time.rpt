@@ -5,10 +5,10 @@ Startpoint: current_state_reg[2]/Q
 Endpoint: current_state_reg[1]/D
     (Clocked by sysclk R)
 Path Group: default
-Data required time: 2961.4
-    (Clock shift: 3000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 38.6)
+Data required time: 1461.4
+    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 38.6)
 Data arrival time: 386.3
-Slack: 2575.1
+Slack: 1075.1
 Logic depth: 5
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                      Arrival               Arc      Net               Net    Total   fan-                                   
@@ -32,10 +32,10 @@ Startpoint: ST[2]
 Endpoint: current_state_reg[1]/D
     (Clocked by sysclk R)
 Path Group: I2R
-Data required time: 2960.0
-    (Clock shift: 3000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 40.0)
+Data required time: 1460.0
+    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Setup time: 40.0)
 Data arrival time: 990.8
-Slack: 1969.2
+Slack: 469.2
 Logic depth: 6
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                      Arrival               Arc      Net               Net    Total   fan-                                   
@@ -59,10 +59,10 @@ Startpoint: current_state_reg[0]/Q
 Endpoint: heater
     (Clocked by vsysclk R)
 Path Group: R2O
-Data required time: 400.0
-    (Clock shift: 1000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 600.0)
+Data required time: 1050.0
+    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 450.0)
 Data arrival time: 234.8
-Slack: 165.2
+Slack: 815.2
 Logic depth: 2
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                      Arrival               Arc      Net               Net    Total   fan-                                   
