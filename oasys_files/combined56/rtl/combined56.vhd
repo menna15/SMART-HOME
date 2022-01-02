@@ -28,7 +28,7 @@ BEGIN
   -- Sequential memory of the VHDL MOORE FSM Sequence Detector
   PROCESS (Clk)
   BEGIN
-    IF (rising_edge(Clk)) THEN
+  IF (rising_edge(Clk)) THEN
 	IF (Rst = '1') THEN
       		current_state <= Zero;
 	ELSE

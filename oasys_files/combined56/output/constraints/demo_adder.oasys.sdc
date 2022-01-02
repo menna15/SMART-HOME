@@ -1,11 +1,12 @@
 #
 # Created by 
-#   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Wed Dec 29 10:39:26 2021
+#   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Sun Jan  2 15:43:54 2022
 # (C) Mentor Graphics Corporation
 #
 set_units -time ns -capacitance ff -resistance kohm -power nW -voltage V -current mA
 create_clock -period 2 -waveform {0 1} -name vsysclk 
 create_clock -period 3 -waveform {0 1.5} -name sysclk [get_ports Clk]
+set_false_path -from [get_ports Rst]
 group_path -name I2R -from [list [get_ports {ST[0]}] [get_ports {ST[1]}] [get_ports {ST[2]}] [get_ports {ST[3]}] [get_ports {ST[4]}] [get_ports {ST[5]}] [get_ports {ST[6]}] [get_ports SFA] [get_ports SW] [get_ports SRD] [get_ports SFD] [get_ports Rst] [get_ports Clk]]
 group_path -name I2O -from [list [get_ports {ST[0]}] [get_ports {ST[1]}] [get_ports {ST[2]}] [get_ports {ST[3]}] [get_ports {ST[4]}] [get_ports {ST[5]}] [get_ports {ST[6]}] [get_ports SFA] [get_ports SW] [get_ports SRD] [get_ports SFD] [get_ports Rst] [get_ports Clk]]  -to [list [get_ports {display[0]}] [get_ports {display[1]}] [get_ports {display[2]}] [get_ports cooler] [get_ports heater] [get_ports alarmbuzz] [get_ports winbuzz] [get_ports rdoor] [get_ports fdoor]]
 group_path -name R2O -to [list [get_ports {display[0]}] [get_ports {display[1]}] [get_ports {display[2]}] [get_ports cooler] [get_ports heater] [get_ports alarmbuzz] [get_ports winbuzz] [get_ports rdoor] [get_ports fdoor]]

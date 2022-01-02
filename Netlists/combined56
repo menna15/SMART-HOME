@@ -6,7 +6,7 @@ vsim -gui work.Combined56
 # Loading ieee.std_logic_1164(body)
 # Loading work.Combined67(behavioral)
 add wave -position insertpoint  \
-sim:/Combined56/clk \
+sim:/Combined56/Clk \
 sim:/Combined56/Rst \
 sim:/Combined56/SFD \
 sim:/Combined56/SRD \
