@@ -33,11 +33,9 @@ BEGIN
         IF (rising_edge(Clk)) THEN
 		IF (Rst = '1') THEN
             		state <= s0;
-                    heater <= '0';
-                    cooler <= '0';
 		ELSE
             		state <= next_state;
-		END IF;
+        	END IF;
         END IF;
     END PROCESS;
 
@@ -140,8 +138,8 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            --heater <= 'Z';
-            --cooler <= 'Z';
+            heater <= '0';
+            cooler <= '0';
             display <= "000";
 
         ELSIF (state = s1) THEN
@@ -149,8 +147,6 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            --heater <= 'Z';
-            --cooler <= 'Z';
             display <= "001";
 
         ELSIF (state = s2) THEN
@@ -158,8 +154,6 @@ BEGIN
             rdoor <= '1';
             winbuzz <= '0';
             alarmbuzz <= '0';
-            --heater <= 'Z';
-            --cooler <= 'Z';
             display <= "010";
 
         ELSIF (state = s3) THEN
@@ -167,8 +161,6 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '0';
             alarmbuzz <= '1';
-            --heater <= 'Z';
-            --cooler <= 'Z';
             display <= "011";
 
         ELSIF (state = s4) THEN
@@ -176,13 +168,10 @@ BEGIN
             rdoor <= '0';
             winbuzz <= '1';
             alarmbuzz <= '0';
-            IF (next_state /= s5 AND next_state /= s6)THEN
-                heater <= '0';
-                cooler <= '0';
-            --ELSE
-            --    heater <= 'Z';
-            --    cooler <= 'Z';
-            END IF;
+        	IF (next_state /= s5 AND next_state /= s6) THEN
+            		heater <= '0';
+            		cooler <= '0';
+            	END IF;
             display <= "100";
 
         ELSIF (state = s5) THEN

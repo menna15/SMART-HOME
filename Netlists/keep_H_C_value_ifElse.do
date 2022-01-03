@@ -6,7 +6,7 @@ vsim work.keep_H_C_value_ifelse
 # Loading ieee.std_logic_1164(body)
 # Loading work.combined56_ifelse(design_architecture)
 add wave -position insertpoint  \
-sim:/keep_H_C_value_ifelse/clk \
+sim:/keep_H_C_value_ifelse/Clk \
 sim:/keep_H_C_value_ifelse/Rst \
 sim:/keep_H_C_value_ifelse/SFD \
 sim:/keep_H_C_value_ifelse/SRD \
@@ -20,7 +20,7 @@ sim:/keep_H_C_value_ifelse/alarmbuzz \
 sim:/keep_H_C_value_ifelse/heater \
 sim:/keep_H_C_value_ifelse/cooler \
 sim:/keep_H_C_value_ifelse/display
-force -freeze sim:/keep_H_C_value_ifelse/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/keep_H_C_value_ifelse/Clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/keep_H_C_value_ifelse/Rst 1 0
 run
 force -freeze sim:/keep_H_C_value_ifelse/Rst 0 0

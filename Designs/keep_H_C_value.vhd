@@ -26,9 +26,9 @@ ARCHITECTURE Behavioral OF keep_H_C_value IS
 
 BEGIN
   -- Sequential memory of the VHDL MOORE FSM Sequence Detector
-  PROCESS (Clk)
+PROCESS (Clk)
   BEGIN
-  IF (rising_edge(Clk)) THEN
+    IF (rising_edge(Clk)) THEN
 	IF (Rst = '1') THEN
       		current_state <= Zero;
 	ELSE
@@ -172,32 +172,26 @@ BEGIN
         rdoor <= '0';
         winbuzz <= '0';
         alarmbuzz <= '0';
-        --heater <= 'Z';
-        --cooler <= 'Z';
+        heater <= '0';
+        cooler <= '0';
         display <= "000";
       WHEN One =>
         fdoor <= '1';
         rdoor <= '0';
         winbuzz <= '0';
         alarmbuzz <= '0';
-        --heater <= 'Z';
-        --cooler <= 'Z';
         display <= "001";
       WHEN Two =>
         fdoor <= '0';
         rdoor <= '1';
         winbuzz <= '0';
         alarmbuzz <= '0';
-        --heater <= 'Z';
-        --cooler <= 'Z';
         display <= "010";
       WHEN Three =>
         fdoor <= '0';
         rdoor <= '0';
         winbuzz <= '0';
         alarmbuzz <= '1';
-        --heater <= 'Z';
-        --cooler <= 'Z';
         display <= "011";
       WHEN Four =>
         fdoor <= '0';
@@ -207,9 +201,6 @@ BEGIN
         IF (next_state /= Five AND next_state /= Six) THEN
             heater <= '0';
             cooler <= '0';
-        --ELSE
-        --    heater <= 'Z';
-        --    cooler <= 'Z';
         END IF;
         display <= "100";
       WHEN Five =>

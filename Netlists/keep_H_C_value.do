@@ -6,7 +6,7 @@ vsim -gui work.keep_H_C_value
 # Loading ieee.std_logic_1164(body)
 # Loading work.combined67(behavioral)
 add wave -position insertpoint  \
-sim:/keep_H_C_value/clk \
+sim:/keep_H_C_value/Clk \
 sim:/keep_H_C_value/Rst \
 sim:/keep_H_C_value/SFD \
 sim:/keep_H_C_value/SRD \
@@ -20,7 +20,7 @@ sim:/keep_H_C_value/alarmbuzz \
 sim:/keep_H_C_value/heater \
 sim:/keep_H_C_value/cooler \
 sim:/keep_H_C_value/display
-force -freeze sim:/keep_H_C_value/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/keep_H_C_value/Clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/keep_H_C_value/Rst 1 0
 run
 force -freeze sim:/keep_H_C_value/SFD 1 0

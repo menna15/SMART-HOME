@@ -1,0 +1,129 @@
+# Compile of NangateOpenCellLibrary.v was successful.
+# Compile of combined56.syn.v was successful.
+# Compile of combined56_v1.syn.v was successful.
+# Compile of combined56IfElse.syn.v was successful.
+# Compile of keep_H_C_value.syn.v was successful.
+# Compile of keep_H_C_value_ifElse.syn.v was successful.
+# Compile of Mealy.syn.v was successful.
+# Compile of NangateOpenCellLibrary.v was successful.
+# Compile of separate56.syn.v was successful.
+# Compile of seperate56_ifelse.syn.v was successful.
+# 9 compiles, 0 failed with no errors.
+do keep_H_C_value_ifElse.do
+# vsim work.keep_H_C_value_ifelse 
+# Start time: 11:48:27 on Jan 03,2022
+# Loading work.keep_H_C_value_ifelse
+# Loading work.DFF_X1
+# Loading work.DLH_X1
+# Loading work.NOR3_X1
+# Loading work.AOI221_X1
+# Loading work.NAND2_X1
+# Loading work.NOR2_X1
+# Loading work.AOI21_X1
+# Loading work.AOI222_X1
+# Loading work.OAI21_X1
+# Loading work.AND2_X1
+# Loading work.OR2_X1
+# Loading work.OAI33_X1
+# Loading work.OAI22_X1
+# Loading work.OAI211_X1
+# Loading work.AOI211_X1
+# Loading work.INV_X1
+# Loading work.NAND3_X1
+# Loading work.OR3_X1
+# Loading work.seq_DFF_X1
+# Loading work.seq_DLH_X1
+# ** Error: (vish-4014) No objects found matching '/keep_H_C_value_ifelse/clk'.
+# Error in macro ./keep_H_C_value_ifElse.do line 22
+# (vish-4014) No objects found matching '/keep_H_C_value_ifelse/clk'.
+#     while executing
+# "add wave -position insertpoint  \
+# sim:/keep_H_C_value_ifelse/clk \
+# sim:/keep_H_C_value_ifelse/Rst \
+# sim:/keep_H_C_value_ifelse/SFD \
+# sim:/keep_H_C_val..."
+quit -sim
+# End time: 11:50:47 on Jan 03,2022, Elapsed time: 0:02:20
+# Errors: 3, Warnings: 0
+do keep_H_C_value_ifElse.do
+# vsim work.keep_H_C_value_ifelse 
+# Start time: 11:50:51 on Jan 03,2022
+# Loading work.keep_H_C_value_ifelse
+# Loading work.DFF_X1
+# Loading work.DLH_X1
+# Loading work.NOR3_X1
+# Loading work.AOI221_X1
+# Loading work.NAND2_X1
+# Loading work.NOR2_X1
+# Loading work.AOI21_X1
+# Loading work.AOI222_X1
+# Loading work.OAI21_X1
+# Loading work.AND2_X1
+# Loading work.OR2_X1
+# Loading work.OAI33_X1
+# Loading work.OAI22_X1
+# Loading work.OAI211_X1
+# Loading work.AOI211_X1
+# Loading work.INV_X1
+# Loading work.NAND3_X1
+# Loading work.OR3_X1
+# Loading work.seq_DFF_X1
+# Loading work.seq_DLH_X1
+do keep_H_C_value.do
+# End time: 11:51:52 on Jan 03,2022, Elapsed time: 0:01:01
+# Errors: 0, Warnings: 0
+# vsim -gui work.keep_H_C_value 
+# Start time: 11:51:52 on Jan 03,2022
+# Loading work.keep_H_C_value
+# Loading work.DFF_X1
+# Loading work.DLH_X1
+# Loading work.NOR3_X1
+# Loading work.NOR2_X1
+# Loading work.AOI22_X1
+# Loading work.OAI33_X1
+# Loading work.AOI21_X1
+# Loading work.OAI221_X1
+# Loading work.OAI21_X1
+# Loading work.INV_X1
+# Loading work.OAI22_X1
+# Loading work.NAND2_X1
+# Loading work.AOI211_X1
+# Loading work.NOR4_X1
+# Loading work.OR3_X1
+# Loading work.AND3_X1
+# Loading work.seq_DFF_X1
+# Loading work.seq_DLH_X1
+# ** Error: (vish-4014) No objects found matching '/keep_H_C_value/clk'.
+# Error in macro ./keep_H_C_value.do line 22
+# (vish-4014) No objects found matching '/keep_H_C_value/clk'.
+#     while executing
+# "add wave -position insertpoint  \
+# sim:/keep_H_C_value/clk \
+# sim:/keep_H_C_value/Rst \
+# sim:/keep_H_C_value/SFD \
+# sim:/keep_H_C_value/SRD \
+# sim:/keep_H_..."
+do keep_H_C_value.do
+# End time: 11:52:51 on Jan 03,2022, Elapsed time: 0:00:59
+# Errors: 3, Warnings: 0
+# vsim -gui work.keep_H_C_value 
+# Start time: 11:52:51 on Jan 03,2022
+# Loading work.keep_H_C_value
+# Loading work.DFF_X1
+# Loading work.DLH_X1
+# Loading work.NOR3_X1
+# Loading work.NOR2_X1
+# Loading work.AOI22_X1
+# Loading work.OAI33_X1
+# Loading work.AOI21_X1
+# Loading work.OAI221_X1
+# Loading work.OAI21_X1
+# Loading work.INV_X1
+# Loading work.OAI22_X1
+# Loading work.NAND2_X1
+# Loading work.AOI211_X1
+# Loading work.NOR4_X1
+# Loading work.OR3_X1
+# Loading work.AND3_X1
+# Loading work.seq_DFF_X1
+# Loading work.seq_DLH_X1
