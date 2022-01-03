@@ -1,13 +1,13 @@
 /*
  * Created by 
-   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Sun Jan  2 23:45:08 2022
+   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Mon Jan  3 11:42:23 2022
  * (C) Mentor Graphics Corporation
  */
 /* CheckSum: 271876468 */
 
-module Mealy(clk, Rst, SFD, SRD, SW, SFA, ST, fdoor, rdoor, winbuzz, alarmbuzz, 
+module Mealy(Clk, Rst, SFD, SRD, SW, SFA, ST, fdoor, rdoor, winbuzz, alarmbuzz, 
       heater, cooler, display);
-   input clk;
+   input Clk;
    input Rst;
    input SFD;
    input SRD;
@@ -83,9 +83,9 @@ module Mealy(clk, Rst, SFD, SRD, SW, SFA, ST, fdoor, rdoor, winbuzz, alarmbuzz,
    wire n_0_0_54;
    wire n_0_0_55;
 
-   DFF_X1 \state_reg[2]  (.D(n_0_2), .CK(clk), .Q(state[2]), .QN());
-   DFF_X1 \state_reg[1]  (.D(n_0_1), .CK(clk), .Q(state[1]), .QN());
-   DFF_X1 \state_reg[0]  (.D(n_0_0), .CK(clk), .Q(state[0]), .QN());
+   DFF_X1 \state_reg[2]  (.D(n_0_2), .CK(Clk), .Q(state[2]), .QN());
+   DFF_X1 \state_reg[1]  (.D(n_0_1), .CK(Clk), .Q(state[1]), .QN());
+   DFF_X1 \state_reg[0]  (.D(n_0_0), .CK(Clk), .Q(state[0]), .QN());
    AOI211_X1 i_0_0_0 (.A(n_0_0_34), .B(n_0_0_27), .C1(n_0_0_41), .C2(n_0_0_40), 
       .ZN(heater));
    AOI211_X1 i_0_0_1 (.A(n_0_0_30), .B(n_0_0_27), .C1(n_0_0_41), .C2(n_0_0_40), 

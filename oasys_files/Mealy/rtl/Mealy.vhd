@@ -4,7 +4,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 -- Design 2 idea : is to keep the output if heater or cooler = 1 untill the tempreture change to the normal range --
 ENTITY Mealy IS
     PORT (
-        clk : IN STD_LOGIC;
+        Clk : IN STD_LOGIC;
         Rst : IN STD_LOGIC; -- reset input
         SFD : IN STD_LOGIC;
         SRD : IN STD_LOGIC;
@@ -28,7 +28,7 @@ ARCHITECTURE Mealy_arch OF Mealy IS
 
 BEGIN
     -- Block1 unsynchronous reset--
-    PROCESS (Clk, Rst)
+    PROCESS (Clk)
     BEGIN
         IF (rising_edge(Clk)) THEN
 		IF (Rst = '1') THEN

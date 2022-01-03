@@ -83,7 +83,7 @@ PINS 22 ;
 + LAYER metal3 ( 0 0 ) ( 140 140 )
 + PLACED ( 146910 70279 ) N 
 ;
-- clk + NET clk 
+- Clk + NET Clk 
 + LAYER metal3 ( 0 0 ) ( 140 140 )
 + PLACED ( 146910 71959 ) N 
 ;
