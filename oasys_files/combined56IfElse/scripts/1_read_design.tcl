@@ -1,3 +1,4 @@
+
 #########################################################
 #                 1_read_design.tcl
 #
@@ -78,7 +79,7 @@ read_vhdl $rtl_list
 		-minimum_bitwidth 4 -sequential_cell latch 	
 
 
-	#set_parameter ungroup_small_hierarchies 0			
+	set_parameter ungroup_small_hierarchies 0			
 
 
 echo "\n-----------------------------"

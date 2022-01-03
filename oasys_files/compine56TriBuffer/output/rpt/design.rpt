@@ -1,0 +1,36 @@
+Report Physical info: 
+------------------------+-------------------+-----------+------------
+                        |                   |Area (squm)|Leakage (uW)
+------------------------+-------------------+-----------+------------
+Design Name             |Combined56TriBuffer|           |            
+  Total Instances       |                 62|         75|       1.682
+    Macros              |                  0|          0|       0.000
+    Pads                |                  0|          0|       0.000
+    Phys                |                  0|          0|       0.000
+    Blackboxes          |                  0|          0|       0.000
+    Cells               |                 62|         75|       1.682
+      Buffers           |                  0|          0|       0.000
+      Inverters         |                  6|          3|       0.086
+      Clock-Gates       |                  0|          0|       0.000
+      Combinational     |                 53|         58|       1.359
+      Latches           |                  0|          0|       0.000
+      FlipFlops         |                  3|         14|       0.237
+       Single-Bit FF    |                  3|         14|       0.237
+       Multi-Bit FF     |                  0|          0|       0.000
+       Clock-Gated      |                  0|           |            
+       Bits             |                  3|         14|       0.237
+         Load-Enabled   |                  0|           |            
+         Clock-Gated    |                  0|           |            
+  Tristate Pin Count    |                  3|           |            
+Physical Info           |Placed             |           |            
+  Chip Size (mm x mm)   |0.071 x 0.071      |       5067|            
+  Fixed Cell Area       |                   |          0|            
+    Phys Only           |                  0|          0|            
+  Placeable Area        |                   |        108|            
+  Movable Cell Area     |                   |         75|            
+  Utilization (%)       |                 69|           |            
+  Chip Utilization (%)  |                 69|           |            
+  Total Wire Length (mm)|              0.803|           |            
+  Longest Wire (mm)     |              0.036|           |            
+  Average Wire (mm)     |              0.032|           |            
+------------------------+-------------------+-----------+------------

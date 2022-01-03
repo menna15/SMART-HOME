@@ -3,34 +3,34 @@ Report Physical info:
                         |             |Area (squm)|Leakage (uW)
 ------------------------+-------------+-----------+------------
 Design Name             |Mealy        |           |            
-  Total Instances       |          279|        232|       5.311
+  Total Instances       |           71|         80|       1.772
     Macros              |            0|          0|       0.000
     Pads                |            0|          0|       0.000
     Phys                |            0|          0|       0.000
     Blackboxes          |            0|          0|       0.000
-    Cells               |          279|        232|       5.311
+    Cells               |           71|         80|       1.772
       Buffers           |            0|          0|       0.000
-      Inverters         |          109|         58|       1.564
+      Inverters         |           13|          7|       0.187
       Clock-Gates       |            0|          0|       0.000
-      Combinational     |          167|        159|       3.401
+      Combinational     |           55|         59|       1.348
       Latches           |            0|          0|       0.000
-      FlipFlops         |            3|         15|       0.345
-       Single-Bit FF    |            3|         15|       0.345
+      FlipFlops         |            3|         14|       0.237
+       Single-Bit FF    |            3|         14|       0.237
        Multi-Bit FF     |            0|          0|       0.000
        Clock-Gated      |            0|           |            
-       Bits             |            3|         15|       0.345
+       Bits             |            3|         14|       0.237
          Load-Enabled   |            0|           |            
          Clock-Gated    |            0|           |            
   Tristate Pin Count    |            0|           |            
 Physical Info           |Placed       |           |            
-  Chip Size (mm x mm)   |0.080 x 0.080|       6349|            
+  Chip Size (mm x mm)   |0.074 x 0.074|       5406|            
   Fixed Cell Area       |             |          0|            
     Phys Only           |            0|          0|            
-  Placeable Area        |             |        384|            
-  Movable Cell Area     |             |        232|            
-  Utilization (%)       |           60|           |            
-  Chip Utilization (%)  |           60|           |            
-  Total Wire Length (mm)|        0.881|           |            
-  Longest Wire (mm)     |        0.041|           |            
-  Average Wire (mm)     |        0.040|           |            
+  Placeable Area        |             |        170|            
+  Movable Cell Area     |             |         80|            
+  Utilization (%)       |           46|           |            
+  Chip Utilization (%)  |           46|           |            
+  Total Wire Length (mm)|        0.807|           |            
+  Longest Wire (mm)     |        0.038|           |            
+  Average Wire (mm)     |        0.037|           |            
 ------------------------+-------------+-----------+------------

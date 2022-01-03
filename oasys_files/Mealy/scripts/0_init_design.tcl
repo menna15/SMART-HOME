@@ -3,7 +3,7 @@
 
 ###################Top Module Specification###########
 set top_module "Mealy"
-set max_route_layer "5"
+set max_route_layer "9"
 
 #Set design file path variables
 set ekit_dir            "$env(PWD)"
