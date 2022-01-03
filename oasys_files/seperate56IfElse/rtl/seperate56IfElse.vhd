@@ -28,7 +28,7 @@ ARCHITECTURE Design_Architecture OF seperate56_ifelse IS
 
 BEGIN
     -- Block1 unsynchronous reset--
-    PROCESS (Clk, Rst)
+    PROCESS (Clk)
     BEGIN
         IF (rising_edge(Clk)) THEN
 		IF (Rst = '1') THEN
