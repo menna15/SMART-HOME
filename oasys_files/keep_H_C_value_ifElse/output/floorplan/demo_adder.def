@@ -47,92 +47,92 @@ TRACKS Y 165 DO 45 STEP 3200 LAYER metal10 ;
 
 PINS 22 ;
 - fdoor + NET fdoor 
-+ LAYER metal4 ( 0 0 ) ( 280 280 )
-+ PLACED ( 71399 144620 ) N 
-;
-- rdoor + NET rdoor 
-+ LAYER metal3 ( 0 0 ) ( 140 140 )
-+ PLACED ( 144760 71399 ) N 
-;
-- winbuzz + NET winbuzz 
-+ LAYER metal4 ( 0 0 ) ( 280 280 )
-+ PLACED ( 68599 0 ) N 
-;
-- alarmbuzz + NET alarmbuzz 
-+ LAYER metal3 ( 0 0 ) ( 140 140 )
-+ PLACED ( 0 68599 ) E 
-;
-- heater + NET heater 
-+ LAYER metal4 ( 0 0 ) ( 280 280 )
-+ PLACED ( 73639 0 ) N 
-;
-- cooler + NET cooler 
-+ LAYER metal3 ( 0 0 ) ( 140 140 )
-+ PLACED ( 0 73639 ) E 
-;
-- display[2] + NET display[2] 
-+ LAYER metal4 ( 0 0 ) ( 280 280 )
-+ PLACED ( 69159 0 ) N 
-;
-- display[1] + NET display[1] 
-+ LAYER metal3 ( 0 0 ) ( 140 140 )
-+ PLACED ( 0 69159 ) E 
-;
-- display[0] + NET display[0] 
-+ LAYER metal4 ( 0 0 ) ( 280 280 )
-+ PLACED ( 73079 0 ) N 
-;
-- clk + NET clk 
-+ LAYER metal3 ( 0 0 ) ( 140 140 )
-+ PLACED ( 0 73079 ) E 
-;
-- Rst + NET Rst 
-+ LAYER metal4 ( 0 0 ) ( 280 280 )
-+ PLACED ( 69719 0 ) N 
-;
-- SFD + NET SFD 
 + LAYER metal3 ( 0 0 ) ( 140 140 )
 + PLACED ( 0 69719 ) E 
 ;
-- SRD + NET SRD 
-+ LAYER metal4 ( 0 0 ) ( 280 280 )
-+ PLACED ( 72519 0 ) N 
-;
-- SW + NET SW 
+- rdoor + NET rdoor 
 + LAYER metal3 ( 0 0 ) ( 140 140 )
 + PLACED ( 0 72519 ) E 
 ;
-- SFA + NET SFA 
+- winbuzz + NET winbuzz 
++ LAYER metal4 ( 0 0 ) ( 280 280 )
++ PLACED ( 72519 144620 ) N 
+;
+- alarmbuzz + NET alarmbuzz 
++ LAYER metal3 ( 0 0 ) ( 140 140 )
++ PLACED ( 144760 69719 ) N 
+;
+- heater + NET heater 
++ LAYER metal3 ( 0 0 ) ( 140 140 )
++ PLACED ( 144760 72519 ) N 
+;
+- cooler + NET cooler 
++ LAYER metal4 ( 0 0 ) ( 280 280 )
++ PLACED ( 74759 0 ) N 
+;
+- display[2] + NET display[2] 
 + LAYER metal4 ( 0 0 ) ( 280 280 )
 + PLACED ( 70279 0 ) N 
 ;
-- ST[6] + NET ST[6] 
+- display[1] + NET display[1] 
 + LAYER metal3 ( 0 0 ) ( 140 140 )
 + PLACED ( 0 70279 ) E 
 ;
-- ST[5] + NET ST[5] 
-+ LAYER metal4 ( 0 0 ) ( 280 280 )
-+ PLACED ( 71959 0 ) N 
-;
-- ST[4] + NET ST[4] 
+- display[0] + NET display[0] 
 + LAYER metal3 ( 0 0 ) ( 140 140 )
 + PLACED ( 0 71959 ) E 
 ;
-- ST[3] + NET ST[3] 
+- Clk + NET Clk 
++ LAYER metal3 ( 0 0 ) ( 140 140 )
++ PLACED ( 144760 70279 ) N 
+;
+- Rst + NET Rst 
++ LAYER metal3 ( 0 0 ) ( 140 140 )
++ PLACED ( 144760 71959 ) N 
+;
+- SFD + NET SFD 
++ LAYER metal4 ( 0 0 ) ( 280 280 )
++ PLACED ( 74199 0 ) N 
+;
+- SRD + NET SRD 
 + LAYER metal4 ( 0 0 ) ( 280 280 )
 + PLACED ( 70839 0 ) N 
 ;
-- ST[2] + NET ST[2] 
+- SW + NET SW 
 + LAYER metal3 ( 0 0 ) ( 140 140 )
 + PLACED ( 0 70839 ) E 
 ;
-- ST[1] + NET ST[1] 
+- SFA + NET SFA 
++ LAYER metal3 ( 0 0 ) ( 140 140 )
++ PLACED ( 0 71399 ) E 
+;
+- ST[6] + NET ST[6] 
++ LAYER metal3 ( 0 0 ) ( 140 140 )
++ PLACED ( 144760 70839 ) N 
+;
+- ST[5] + NET ST[5] 
++ LAYER metal3 ( 0 0 ) ( 140 140 )
++ PLACED ( 144760 71399 ) N 
+;
+- ST[4] + NET ST[4] 
++ LAYER metal4 ( 0 0 ) ( 280 280 )
++ PLACED ( 73639 0 ) N 
+;
+- ST[3] + NET ST[3] 
 + LAYER metal4 ( 0 0 ) ( 280 280 )
 + PLACED ( 71399 0 ) N 
 ;
+- ST[2] + NET ST[2] 
++ LAYER metal4 ( 0 0 ) ( 280 280 )
++ PLACED ( 73079 0 ) N 
+;
+- ST[1] + NET ST[1] 
++ LAYER metal4 ( 0 0 ) ( 280 280 )
++ PLACED ( 71959 0 ) N 
+;
 - ST[0] + NET ST[0] 
-+ LAYER metal3 ( 0 0 ) ( 140 140 )
-+ PLACED ( 0 71399 ) E 
++ LAYER metal4 ( 0 0 ) ( 280 280 )
++ PLACED ( 72519 0 ) N 
 ;
 END PINS
 

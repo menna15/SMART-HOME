@@ -3,7 +3,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY keep_H_C_value IS
   PORT (
-    clk : IN STD_LOGIC; --- clock signal
+    Clk : IN STD_LOGIC; --- clock signal
     Rst : IN STD_LOGIC; -- reset input
     SFD : IN STD_LOGIC;
     SRD : IN STD_LOGIC;
@@ -28,7 +28,7 @@ BEGIN
   -- Sequential memory of the VHDL MOORE FSM Sequence Detector
   PROCESS (Clk, Rst)
   BEGIN
-    IF (rising_edge(Clk)) THEN
+  IF (rising_edge(Clk)) THEN
 	IF (Rst = '1') THEN
       		current_state <= Zero;
 	ELSE

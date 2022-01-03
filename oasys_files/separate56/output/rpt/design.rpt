@@ -3,34 +3,34 @@ Report Physical info:
                         |             |Area (squm)|Leakage (uW)
 ------------------------+-------------+-----------+------------
 Design Name             |Separate56   |           |            
-  Total Instances       |           85|         88|       2.092
+  Total Instances       |           61|         72|       1.600
     Macros              |            0|          0|       0.000
     Pads                |            0|          0|       0.000
     Phys                |            0|          0|       0.000
     Blackboxes          |            0|          0|       0.000
-    Cells               |           85|         88|       2.092
-      Buffers           |            3|          2|       0.064
-      Inverters         |           20|         11|       0.287
+    Cells               |           61|         72|       1.600
+      Buffers           |            0|          0|       0.000
+      Inverters         |            8|          4|       0.115
       Clock-Gates       |            0|          0|       0.000
-      Combinational     |           59|         60|       1.396
+      Combinational     |           50|         54|       1.248
       Latches           |            0|          0|       0.000
-      FlipFlops         |            3|         15|       0.345
-       Single-Bit FF    |            3|         15|       0.345
+      FlipFlops         |            3|         14|       0.237
+       Single-Bit FF    |            3|         14|       0.237
        Multi-Bit FF     |            0|          0|       0.000
        Clock-Gated      |            0|           |            
-       Bits             |            3|         15|       0.345
+       Bits             |            3|         14|       0.237
          Load-Enabled   |            0|           |            
          Clock-Gated    |            0|           |            
   Tristate Pin Count    |            0|           |            
 Physical Info           |Placed       |           |            
-  Chip Size (mm x mm)   |0.072 x 0.072|       5203|            
+  Chip Size (mm x mm)   |0.071 x 0.071|       5030|            
   Fixed Cell Area       |             |          0|            
     Phys Only           |            0|          0|            
-  Placeable Area        |             |        134|            
-  Movable Cell Area     |             |         88|            
-  Utilization (%)       |           65|           |            
-  Chip Utilization (%)  |           65|           |            
-  Total Wire Length (mm)|        0.798|           |            
-  Longest Wire (mm)     |        0.037|           |            
+  Placeable Area        |             |        106|            
+  Movable Cell Area     |             |         72|            
+  Utilization (%)       |           67|           |            
+  Chip Utilization (%)  |           67|           |            
+  Total Wire Length (mm)|        0.784|           |            
+  Longest Wire (mm)     |        0.036|           |            
   Average Wire (mm)     |        0.036|           |            
 ------------------------+-------------+-----------+------------

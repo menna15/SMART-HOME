@@ -3,7 +3,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY Separate56 IS
   PORT (
-    clk : IN STD_LOGIC; --- clock signal
+    Clk : IN STD_LOGIC; --- clock signal
     Rst : IN STD_LOGIC; -- reset input
     SFD : IN STD_LOGIC;
     SRD : IN STD_LOGIC;
