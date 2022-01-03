@@ -31,6 +31,8 @@ PROCESS (Clk)
     IF (rising_edge(Clk)) THEN
 	IF (Rst = '1') THEN
       		current_state <= Zero;
+                heater <= '0';
+                cooler <= '0';
 	ELSE
       		current_state <= next_state;
 	END IF;

@@ -1,0 +1,27 @@
+Report for group default
+Report for group I2R
+Report for group I2O
+Report for group R2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: current_state_reg[0]/Q
+    (Clocked by sysclk R)
+Endpoint: alarmbuzz
+    (Clocked by vsysclk R)
+Path Group: R2O
+Data required time: 1050.0
+    (Clock shift: 1500.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 450.0)
+Data arrival time: 257.5
+Slack: 792.5
+Logic depth: 2
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Clk                      {create_clock}           r      0.0      0.0      0.0                        0.0      0.0      3    72,   35                       
+current_state_reg[0]/CK->Q
+                         DFF_X1*                 rr    161.1    161.1    161.1      0.0      0.0      5.0     67.4      8    36,   36  /PD_TOP        (1.10)
+i_0_1_36/A2->ZN          NAND2_X4                rf    187.2     26.1     26.0      0.1     15.3      3.3     23.7      5    36,   36  /PD_TOP        (1.10)
+i_0_1_16/A2->ZN          NOR2_X4*                fr    257.1     69.9     69.8      0.1     14.9      6.0     45.5      3    36,   36  /PD_TOP        (1.10)
+alarmbuzz                                         r    257.5      0.4               0.4     15.3                             72,   35                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------
