@@ -26,7 +26,7 @@ ARCHITECTURE Behavioral OF Separate56 IS
 
 BEGIN
   -- Sequential memory of the VHDL MOORE FSM Sequence Detector
-  PROCESS (Clk, Rst)
+  PROCESS (Clk)
   BEGIN
     IF (rising_edge(Clk)) THEN
 	IF (Rst = '1') THEN

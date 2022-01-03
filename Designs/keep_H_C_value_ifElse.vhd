@@ -28,11 +28,13 @@ ARCHITECTURE Design_Architecture OF keep_H_C_value_ifelse IS
 
 BEGIN
     -- Block1 unsynchronous reset--
-    PROCESS (Clk, Rst)
+    PROCESS (Clk)
     BEGIN
         IF (rising_edge(Clk)) THEN
 		IF (Rst = '1') THEN
             		state <= s0;
+                    heater <= '0';
+                    cooler <= '0';
 		ELSE
             		state <= next_state;
 		END IF;

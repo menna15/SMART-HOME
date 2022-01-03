@@ -28,7 +28,7 @@ ARCHITECTURE Mealy_arch OF Mealy IS
 
 BEGIN
     -- Block1 unsynchronous reset--
-    PROCESS (Clk, Rst)
+    PROCESS (Clk)
     BEGIN
         IF (rising_edge(Clk)) THEN
 		IF (Rst = '1') THEN
