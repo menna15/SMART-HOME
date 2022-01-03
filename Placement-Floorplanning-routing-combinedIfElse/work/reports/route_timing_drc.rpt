@@ -1,0 +1,3 @@
+Report 'report_drc': DRC Violations
+Generated on Mon Jan 3 13:28:56 2022
+info UI33: performed report_constraints for 0 sec (CPU time: 0 sec; MEM: RSS - 259M, CVMEM - 1691M, PVMEM - 1870M)
