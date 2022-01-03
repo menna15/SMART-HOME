@@ -13,3 +13,4 @@ Delivered as a project for the VLSI course
 | keep_H_C_value_ifElse | 69 | 540.9 | 142.133652 | 350.6567304 |
 | separate56            | 72 | 459.2 | 154.296753 | 379.0993506 |
 | seperate56IfElse      | 66 | 456.7 | 142.144745 | 374.418949 |
+| try_op1 | 75 | 792.5  | 164.2 |  282.591012 |
