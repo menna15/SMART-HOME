@@ -3,7 +3,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY keep_H_C_value IS
   PORT (
-    Clk : IN STD_LOGIC; --- clock signal
+    clk : IN STD_LOGIC; --- clock signal
     Rst : IN STD_LOGIC; -- reset input
     SFD : IN STD_LOGIC;
     SRD : IN STD_LOGIC;
